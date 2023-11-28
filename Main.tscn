@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://dwjt3a6wf6osf"]
+[gd_scene load_steps=4 format=3 uid="uid://dwjt3a6wf6osf"]
+
+[ext_resource type="PackedScene" uid="uid://cqcddog14f2ly" path="res://player.tscn" id="1_llihy"]
+[ext_resource type="Texture2D" uid="uid://b43r6v3jgraau" path="res://Sprites/top-down-view-1.jpg" id="3_m7spm"]
+[ext_resource type="PackedScene" uid="uid://dbtpccyoavoqu" path="res://bad_guy.tscn" id="4_lbq6d"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_llihy")]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+texture = ExtResource("3_m7spm")
+
+[node name="BadGuy" parent="." instance=ExtResource("4_lbq6d")]
+z_index = 1
+position = Vector2(144, 40)
