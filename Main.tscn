@@ -1,22 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8ha40gifns63"]
+[gd_scene load_steps=7 format=3 uid="uid://c8ha40gifns63"]
 
-[ext_resource type="Script" path="res://Main.cs" id="1_1vefi"]
 [ext_resource type="PackedScene" uid="uid://c58nq2arubspx" path="res://Player.tscn" id="1_865u6"]
+[ext_resource type="Script" path="res://Scripts/Main.cs" id="1_v5wh4"]
 [ext_resource type="PackedScene" uid="uid://di76t0eymq0va" path="res://Mob.tscn" id="2_rytcr"]
 [ext_resource type="PackedScene" uid="uid://cq5mwrshkfgnq" path="res://HUD.tscn" id="4_q1v7b"]
+[ext_resource type="PackedScene" uid="uid://b74nept1ac6dx" path="res://Enemy.tscn" id="5_523g4"]
 
 [sub_resource type="Curve2D" id="Curve2D_ufl6p"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1920, 0, 0, 0, 0, 0, 1920, 1088, 0, 0, 0, 0, 0, 1088, 0, 0, 0, 0, 0, 0)
 }
-point_count = 6
+point_count = 7
 
 [node name="Main" type="Node"]
-script = ExtResource("1_1vefi")
+script = ExtResource("1_v5wh4")
 MobScene = ExtResource("2_rytcr")
 
 [node name="Player" parent="." instance=ExtResource("1_865u6")]
-position = Vector2(500, 300)
+position = Vector2(1000, 504)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -28,15 +29,17 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(500, 300)
+position = Vector2(1000, 500)
 
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_ufl6p")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2(-0.206543, 0)
 
 [node name="HUD" parent="." instance=ExtResource("4_q1v7b")]
+
+[node name="Enemy" parent="." instance=ExtResource("5_523g4")]
+position = Vector2(1456, 616)
 
 [connection signal="Hit" from="Player" to="." method="GameOver"]
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]

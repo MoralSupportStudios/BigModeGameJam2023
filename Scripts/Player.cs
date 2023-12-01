@@ -20,6 +20,7 @@ public partial class Player : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+        LookAt(GetGlobalMousePosition());
         var velocity = Vector2.Zero; // The player's movement vector.
 
         if (Input.IsActionPressed("ui_right"))
@@ -73,7 +74,7 @@ public partial class Player : Area2D
     }
     private void OnBodyEntered(Node2D body)
     {
-        Hide(); // Player disappears after being hit.
+       // Hide(); // Player disappears after being hit.
         EmitSignal(SignalName.Hit);
         // Must be deferred as we can't change physics properties on a physics callback.
         GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);

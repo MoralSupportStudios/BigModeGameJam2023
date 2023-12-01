@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://wli848kjulqy"]
+
+[ext_resource type="Texture2D" uid="uid://wq4xlfcauitl" path="res://Sprites/Coin.png" id="1_ns8tt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_huikh"]
+radius = 16.0
+
+[node name="Bullet" type="RigidBody2D"]
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+lock_rotation = true
+
+[node name="GFX" type="Sprite2D" parent="."]
+texture = ExtResource("1_ns8tt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_huikh")
