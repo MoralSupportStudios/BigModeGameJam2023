@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://wli848kjulqy"]
+[gd_scene load_steps=4 format=3 uid="uid://wli848kjulqy"]
 
+[ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1_1gbvm"]
 [ext_resource type="Texture2D" uid="uid://wq4xlfcauitl" path="res://Sprites/Coin.png" id="1_ns8tt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_huikh"]
@@ -10,9 +11,17 @@ gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
 lock_rotation = true
+script = ExtResource("1_1gbvm")
 
 [node name="GFX" type="Sprite2D" parent="."]
 texture = ExtResource("1_ns8tt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_huikh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

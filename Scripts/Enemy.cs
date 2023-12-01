@@ -22,7 +22,7 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
-		GD.Print("withinAttackRange " + withinAttackRange + " and timeUntilAttack " + timeUntilAttack);
+		//GD.Print("withinAttackRange " + withinAttackRange + " and timeUntilAttack " + timeUntilAttack);
 		if(withinAttackRange && timeUntilAttack <= 0)
 		{
 			Attack();
@@ -52,10 +52,11 @@ public partial class Enemy : CharacterBody2D
 
     public void Attack()
 	{
-		GD.Print("Attack");
-	}
+        player.GetNode<Health>("Health").Damage(damage);
+		GD.Print("Attacked player for " + damage + " damage");
+    }
 
-	public void OnAttackRangeBodyEnter(Node2D body)
+	public void OnAttackRangeBodyEnter(Area2D body)
 	{
         if(body.IsInGroup("player"))
 		{
@@ -64,7 +65,7 @@ public partial class Enemy : CharacterBody2D
         }
     }
 
-	public void OnAttackRangeBodyExit(Node2D body)
+	public void OnAttackRangeBodyExit(Area2D body)
 	{
 		if(body.IsInGroup("player"))
 		{

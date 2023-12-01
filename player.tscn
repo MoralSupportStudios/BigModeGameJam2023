@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c58nq2arubspx"]
+[gd_scene load_steps=11 format=3 uid="uid://c58nq2arubspx"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_rx2gw"]
 [ext_resource type="Texture2D" uid="uid://t0xqeponxmk1" path="res://Sprites/art/playerGrey_up1.png" id="1_yblv8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://7ywldejwc3wr" path="res://Sprites/art/playerGrey_walk2.png" id="4_bq0fy"]
 [ext_resource type="Script" path="res://Scripts/Gun.cs" id="6_qta2o"]
 [ext_resource type="PackedScene" uid="uid://wli848kjulqy" path="res://Bullet.tscn" id="7_3hpiw"]
+[ext_resource type="Script" path="res://Scripts/Health.cs" id="8_n3431"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1fv2"]
 animations = [{
@@ -53,5 +54,9 @@ shape = SubResource("CapsuleShape2D_84rkd")
 position = Vector2(72, 0)
 script = ExtResource("6_qta2o")
 bulletScene = ExtResource("7_3hpiw")
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("8_n3431")
+MaxHealth = 5.0
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

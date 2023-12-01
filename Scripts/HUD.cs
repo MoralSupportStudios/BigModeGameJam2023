@@ -3,8 +3,6 @@ using System;
 
 public partial class HUD : CanvasLayer
 {
-    // Don't forget to rebuild the project so the editor knows about the new signal.
-
     [Signal]
     public delegate void StartGameEventHandler();
     // Called when the node enters the scene tree for the first time.
@@ -32,7 +30,7 @@ public partial class HUD : CanvasLayer
         await ToSignal(messageTimer, Timer.SignalName.Timeout);
 
         var message = GetNode<Label>("Message");
-        message.Text = "Dodge the Creeps!";
+        message.Text = "Shoot with Left Click! Move with WASD or Arrow Keys";
         message.Show();
 
         await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
