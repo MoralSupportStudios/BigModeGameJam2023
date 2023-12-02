@@ -58,5 +58,3 @@ bulletScene = ExtResource("7_3hpiw")
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("8_n3431")
 MaxHealth = 5.0
-
-[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

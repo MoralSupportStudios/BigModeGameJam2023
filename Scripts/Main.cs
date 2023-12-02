@@ -7,22 +7,13 @@ public partial class Main : Node
     public PackedScene MobScene { get; set; }
 
     private int _score;
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-	{
-        //NewGame();
-    }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-    //public void GameOver()
-    //{
-    //    GetNode<Timer>("MobTimer").Stop();
-    //    GetNode<Timer>("ScoreTimer").Stop();
-    //    GetNode<HUD>("HUD").ShowGameOver();
-    //}
+    public void GameOver()
+    {
+        GetNode<Timer>("MobTimer").Stop();
+        GetNode<Timer>("ScoreTimer").Stop();
+        GetNode<HUD>("HUD").ShowGameOver();
+    }
 
     public void NewGame()
     {
@@ -46,7 +37,6 @@ public partial class Main : Node
 
     private void OnStartTimerTimeout()
     {
-        GetNode<Timer>("MobTimer").Start();
         GetNode<Timer>("ScoreTimer").Start();
     }
 }

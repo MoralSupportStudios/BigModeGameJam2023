@@ -4,17 +4,17 @@ using System;
 public partial class Health : Node2D
 {
     [Export] public float MaxHealth = 100f;
-    float health;
+    [Export] public float CurrentHealth;
 
     public override void _Ready()
     {
-        health = MaxHealth;
+        CurrentHealth = MaxHealth;
     }
 
     public void Damage(float damage)
     {
-        health -= damage;
-        if(health <= 0)
+        CurrentHealth -= damage;
+        if(CurrentHealth <= 0)
         {
             GetParent().QueueFree();
         }

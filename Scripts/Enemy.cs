@@ -53,6 +53,7 @@ public partial class Enemy : CharacterBody2D
     public void Attack()
 	{
         player.GetNode<Health>("Health").Damage(damage);
+
 		GD.Print("Attacked player for " + damage + " damage");
     }
 

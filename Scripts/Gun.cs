@@ -31,7 +31,7 @@ public partial class Gun : Node2D
 			GetTree().Root.AddChild(bullet);
 
 			timeUntilFire = 0f;
-			GD.Print("Fire");
+			//GD.Print("Fire");
         }
 		else
 		{

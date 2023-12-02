@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b74nept1ac6dx"]
+[gd_scene load_steps=6 format=3 uid="uid://b74nept1ac6dx"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_5jb1a"]
 [ext_resource type="Texture2D" uid="uid://b6wkon3ult76g" path="res://Sprites/Player.png" id="1_6ohav"]
 [ext_resource type="Script" path="res://Scripts/Health.cs" id="3_1i8pg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ebfj"]
-size = Vector2(56, 64)
+[sub_resource type="CircleShape2D" id="CircleShape2D_652f0"]
+radius = 35.0571
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y0wng"]
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 motion_mode = 1
@@ -16,13 +18,13 @@ texture = ExtResource("1_6ohav")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 16)
-shape = SubResource("RectangleShape2D_4ebfj")
+shape = SubResource("CircleShape2D_652f0")
 
 [node name="AttackRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(0, 16)
-shape = SubResource("RectangleShape2D_4ebfj")
+shape = SubResource("CircleShape2D_y0wng")
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("3_1i8pg")
