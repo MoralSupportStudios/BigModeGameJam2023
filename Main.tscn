@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c8ha40gifns63"]
 
-[ext_resource type="PackedScene" uid="uid://c58nq2arubspx" path="res://player.tscn" id="1_865u6"]
+[ext_resource type="PackedScene" uid="uid://dfcwy876ohq07" path="res://player.tscn" id="1_865u6"]
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_v5wh4"]
 [ext_resource type="PackedScene" uid="uid://di76t0eymq0va" path="res://Mob.tscn" id="2_rytcr"]
 [ext_resource type="PackedScene" uid="uid://cq5mwrshkfgnq" path="res://HUD.tscn" id="4_q1v7b"]
@@ -12,7 +12,27 @@ script = ExtResource("1_v5wh4")
 MobScene = ExtResource("2_rytcr")
 
 [node name="Player" parent="." instance=ExtResource("1_865u6")]
-position = Vector2(632, 320)
+position = Vector2(704, 360)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="EnemySpawner" type="Node2D" parent="Player/Camera2D" node_paths=PackedStringArray("SpawnPoints")]
+position = Vector2(-632, -320)
+script = ExtResource("5_p7ic5")
+EnemyScene = ExtResource("5_523g4")
+SpawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4")]
+EnemyPerSeconds = 2.0
+
+[node name="SpawnPoint" type="Node2D" parent="Player/Camera2D/EnemySpawner"]
+
+[node name="SpawnPoint2" type="Node2D" parent="Player/Camera2D/EnemySpawner"]
+position = Vector2(1288, 8)
+
+[node name="SpawnPoint3" type="Node2D" parent="Player/Camera2D/EnemySpawner"]
+position = Vector2(1280, 728)
+
+[node name="SpawnPoint4" type="Node2D" parent="Player/Camera2D/EnemySpawner"]
+position = Vector2(8, 720)
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
@@ -24,23 +44,6 @@ one_shot = true
 position = Vector2(640, 320)
 
 [node name="HUD" parent="." instance=ExtResource("4_q1v7b")]
-
-[node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPoints")]
-script = ExtResource("5_p7ic5")
-EnemyScene = ExtResource("5_523g4")
-SpawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4")]
-EnemyPerSeconds = 2.0
-
-[node name="SpawnPoint" type="Node2D" parent="EnemySpawner"]
-
-[node name="SpawnPoint2" type="Node2D" parent="EnemySpawner"]
-position = Vector2(1288, 8)
-
-[node name="SpawnPoint3" type="Node2D" parent="EnemySpawner"]
-position = Vector2(1280, 728)
-
-[node name="SpawnPoint4" type="Node2D" parent="EnemySpawner"]
-position = Vector2(8, 720)
 
 [connection signal="Hit" from="Player" to="." method="GameOver"]
 [connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimerTimeout"]

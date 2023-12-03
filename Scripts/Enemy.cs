@@ -62,7 +62,7 @@ public partial class Enemy : CharacterBody2D
         if(body.IsInGroup("player"))
 		{
             withinAttackRange = true;
-            GD.Print("withinAttackRange" + withinAttackRange);
+           // GD.Print("withinAttackRange" + withinAttackRange);
         }
     }
 
@@ -71,7 +71,7 @@ public partial class Enemy : CharacterBody2D
 		if(body.IsInGroup("player"))
 		{
             withinAttackRange = false;
-            GD.Print("withinAttackRange" + withinAttackRange);
+            //GD.Print("withinAttackRange" + withinAttackRange);
             timeUntilAttack = attackSpeed;
         }
 	}

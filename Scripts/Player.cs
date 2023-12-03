@@ -7,13 +7,15 @@ public partial class Player : Area2D
     [Signal]
     public delegate void HitEventHandler();
 
+
     [Export]
     public int Speed { get; set; } = 400; // How fast the player will move (pixels/sec).
+    public bool IsAlive { get; set; } = false;
 
-    public Vector2 ScreenSize; // Size of the game window.
+    //public Vector2 ScreenSize; // Size of the game window.
     public override void _Ready()
 	{
-        ScreenSize = GetViewportRect().Size;
+       // ScreenSize = GetViewportRect().Size;
         Hide();
     }
 
@@ -22,6 +24,7 @@ public partial class Player : Area2D
 	{
         if (!IsInstanceValid(this))
             return;
+
         LookAt(GetGlobalMousePosition());
         var velocity = Vector2.Zero; // The player's movement vector.
 
@@ -57,10 +60,10 @@ public partial class Player : Area2D
             animatedSprite2D.Stop();
         }
         Position += velocity * (float)delta;
-        Position = new Vector2(
-            x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
-            y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
-        );
+        //Position = new Vector2(
+        //    x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
+        //    y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
+        //);
         if (velocity.X != 0)
         {
             animatedSprite2D.Animation = "walk";
@@ -78,5 +81,13 @@ public partial class Player : Area2D
     {
         Position = position;
         Show();
+        IsAlive = true;
+    }
+
+    public void Die()
+    {
+        IsAlive = false;
+        EmitSignal(SignalName.Hit);
+        Hide();
     }
 }

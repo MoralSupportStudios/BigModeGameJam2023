@@ -7,16 +7,16 @@
 script = ExtResource("1_6nk3w")
 
 [node name="ScoreLabel" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -45.0
-offset_right = 45.0
-offset_bottom = 81.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -368.0
+offset_right = 215.0
+offset_bottom = -287.0
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_hurn3")
 theme_override_font_sizes/font_size = 64
-text = "0"
+text = "Score: 0"
 horizontal_alignment = 1
 
 [node name="Message" type="Label" parent="."]
@@ -25,10 +25,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -202.5
-offset_right = 240.0
-offset_bottom = 202.5
+offset_left = -500.0
+offset_top = -100.0
+offset_right = 500.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_hurn3")
@@ -56,6 +56,31 @@ text = "Start"
 [node name="MessageTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -372.0
+offset_bottom = 64.0
+grow_horizontal = 0
+step = 1.0
+
+[node name="HealthLabel" type="Label" parent="HealthBar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -40.0
+offset_right = 4.0
+offset_bottom = 41.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_hurn3")
+theme_override_font_sizes/font_size = 64
+text = "Health"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="OnMessageTimerTimeout"]

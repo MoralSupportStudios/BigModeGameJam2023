@@ -6,33 +6,50 @@ public partial class Main : Node
     [Export]
     public PackedScene MobScene { get; set; }
 
-    private int _score;
-
+    public int Score;
     public void GameOver()
     {
-        GetNode<Timer>("MobTimer").Stop();
-        GetNode<Timer>("ScoreTimer").Stop();
+        // Correct the node path as necessary.
+        var mobTimer = GetNodeOrNull<Timer>("MobTimer");
+
+        if (mobTimer != null)
+        {
+            mobTimer.Stop();
+        }
+        else
+        {
+            GD.Print("MobTimer node not found!");
+        }
+
+        var scoreTimer = GetNodeOrNull<Timer>("ScoreTimer");
+        if (scoreTimer != null)
+        {
+            scoreTimer.Stop();
+        }
+
         GetNode<HUD>("HUD").ShowGameOver();
     }
+
 
     public void NewGame()
     {
         GetTree().CallGroup("enemy", Node.MethodName.QueueFree);
-        _score = 0;
+        Score = 0;
 
         Player player = GetNode<Player>("Player");
         Marker2D startPosition = GetNode<Marker2D>("StartPosition");
         player.Start(startPosition.Position);
+        player.GetNode<Health>("Health").CurrentHealth = player.GetNode<Health>("Health").MaxHealth;
 
         GetNode<Timer>("StartTimer").Start();
         HUD hud = GetNode<HUD>("HUD");
-        hud.UpdateScore(_score);
+        hud.UpdateScore(Score);
         hud.ShowMessage("Get Ready!");
     }
     private void OnScoreTimerTimeout()
     {
-        _score++;
-        GetNode<HUD>("HUD").UpdateScore(_score);
+        Score++;
+        GetNode<HUD>("HUD").UpdateScore(Score);
     }
 
     private void OnStartTimerTimeout()
