@@ -3,7 +3,8 @@ using System;
 
 public partial class Enemy : CharacterBody2D
 {
-	Player player;
+    [Export] PackedScene pickupScene;
+    Player player;
 	[Export] public float Speed { get; set; } = 200f;
 	[Export] float damage = 1f;
 	[Export] float attacksPerSecond = 2f;
@@ -22,7 +23,6 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
-		//GD.Print("withinAttackRange " + withinAttackRange + " and timeUntilAttack " + timeUntilAttack);
 		if(withinAttackRange && timeUntilAttack <= 0)
 		{
 			Attack();
@@ -53,8 +53,6 @@ public partial class Enemy : CharacterBody2D
     public void Attack()
 	{
         player.GetNode<Health>("Health").Damage(damage);
-
-		GD.Print("Attacked player for " + damage + " damage");
     }
 
 	public void OnAttackRangeBodyEnter(Area2D body)
@@ -62,7 +60,6 @@ public partial class Enemy : CharacterBody2D
         if(body.IsInGroup("player"))
 		{
             withinAttackRange = true;
-           // GD.Print("withinAttackRange" + withinAttackRange);
         }
     }
 
@@ -71,8 +68,14 @@ public partial class Enemy : CharacterBody2D
 		if(body.IsInGroup("player"))
 		{
             withinAttackRange = false;
-            //GD.Print("withinAttackRange" + withinAttackRange);
             timeUntilAttack = attackSpeed;
         }
 	}
+    public void Die()
+    {
+        Pickup pickupInstance = (Pickup)pickupScene.Instantiate();
+        pickupInstance.Position = Position;
+        GetParent().CallDeferred("add_child", pickupInstance);
+        QueueFree();
+    }
 }

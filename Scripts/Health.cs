@@ -19,12 +19,6 @@ public partial class Health : Node2D
             if(GetParent().HasMethod("Die"))
             {
                 GetParent().Call("Die");
-                GD.Print("Die");
-            }
-            else
-            {
-                GetParent().QueueFree();
-                GD.Print("Killed badguy");
             }
             //GetParent().QueueFree();
         }

@@ -20,22 +20,26 @@ public partial class Gun : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(Input.IsActionJustPressed("click") && timeUntilFire > fireRate)
-		{
-			RigidBody2D bullet = (RigidBody2D)bulletScene.Instantiate<RigidBody2D>();
-            
-			bullet.Rotation = GlobalRotation;
-			bullet.GlobalPosition = GlobalPosition;
-			bullet.LinearVelocity = bullet.Transform.X * bulletSpeed;
-            
-			GetTree().Root.AddChild(bullet);
+        Player player = GetTree().Root.GetNodeOrNull<Player>("Main/Player");
 
-			timeUntilFire = 0f;
-			//GD.Print("Fire");
-        }
-		else
+		if (player != null && player.IsVisibleInTree())
 		{
-            timeUntilFire += (float)delta;
-        }
+			if (Input.IsActionJustPressed("click") && timeUntilFire > fireRate)
+			{
+                RigidBody2D bullet = bulletScene.Instantiate<RigidBody2D>();
+
+				bullet.Rotation = GlobalRotation;
+				bullet.GlobalPosition = GlobalPosition;
+				bullet.LinearVelocity = bullet.Transform.X * bulletSpeed;
+
+				GetTree().Root.AddChild(bullet);
+
+				timeUntilFire = 0f;
+			}
+			else
+			{
+				timeUntilFire += (float)delta;
+			}
+		}
 	}
 }

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cq5mwrshkfgnq"]
 
-[ext_resource type="Script" path="res://Scripts/HUD.cs" id="1_6nk3w"]
-[ext_resource type="FontFile" uid="uid://bake4dfxthmrt" path="res://fonts/Xolonium-Regular.ttf" id="2_hurn3"]
+[ext_resource type="Script" path="res://Scripts/HUD.cs" id="1_o6va6"]
+[ext_resource type="FontFile" uid="uid://bake4dfxthmrt" path="res://fonts/Xolonium-Regular.ttf" id="2_r5mte"]
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource("1_6nk3w")
+script = ExtResource("1_o6va6")
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchors_preset = 4
@@ -14,7 +14,7 @@ offset_top = -368.0
 offset_right = 215.0
 offset_bottom = -287.0
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_hurn3")
+theme_override_fonts/font = ExtResource("2_r5mte")
 theme_override_font_sizes/font_size = 64
 text = "Score: 0"
 horizontal_alignment = 1
@@ -31,7 +31,7 @@ offset_right = 500.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_hurn3")
+theme_override_fonts/font = ExtResource("2_r5mte")
 theme_override_font_sizes/font_size = 64
 text = "Shoot with Left Click! Move with WASD or Arrow Keys"
 horizontal_alignment = 1
@@ -49,7 +49,7 @@ offset_right = 96.0
 offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_hurn3")
+theme_override_fonts/font = ExtResource("2_r5mte")
 theme_override_font_sizes/font_size = 64
 text = "Start"
 
@@ -76,7 +76,7 @@ offset_top = -40.0
 offset_right = 4.0
 offset_bottom = 41.0
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_hurn3")
+theme_override_fonts/font = ExtResource("2_r5mte")
 theme_override_font_sizes/font_size = 64
 text = "Health"
 horizontal_alignment = 1

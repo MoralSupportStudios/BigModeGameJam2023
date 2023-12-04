@@ -26,7 +26,7 @@ public partial class Player : Area2D
             return;
 
         LookAt(GetGlobalMousePosition());
-        var velocity = Vector2.Zero; // The player's movement vector.
+        Vector2 velocity = Vector2.Zero; // The player's movement vector.
 
         if (Input.IsActionPressed("ui_right"))
         {

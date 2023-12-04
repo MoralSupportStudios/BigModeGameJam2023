@@ -1,25 +1,25 @@
 [gd_scene load_steps=7 format=3 uid="uid://c8ha40gifns63"]
 
-[ext_resource type="PackedScene" uid="uid://dfcwy876ohq07" path="res://player.tscn" id="1_865u6"]
-[ext_resource type="Script" path="res://Scripts/Main.cs" id="1_v5wh4"]
-[ext_resource type="PackedScene" uid="uid://di76t0eymq0va" path="res://Mob.tscn" id="2_rytcr"]
-[ext_resource type="PackedScene" uid="uid://cq5mwrshkfgnq" path="res://HUD.tscn" id="4_q1v7b"]
-[ext_resource type="PackedScene" uid="uid://b74nept1ac6dx" path="res://Enemy.tscn" id="5_523g4"]
-[ext_resource type="Script" path="res://Scripts/EnemySpawner.cs" id="5_p7ic5"]
+[ext_resource type="Script" path="res://Scripts/Main.cs" id="1_gr5jo"]
+[ext_resource type="PackedScene" uid="uid://di76t0eymq0va" path="res://Scenes/Mob.tscn" id="2_nn127"]
+[ext_resource type="PackedScene" uid="uid://dfcwy876ohq07" path="res://Scenes/Player.tscn" id="3_ohotn"]
+[ext_resource type="Script" path="res://Scripts/EnemySpawner.cs" id="4_vwa7w"]
+[ext_resource type="PackedScene" uid="uid://b74nept1ac6dx" path="res://Scenes/Enemy.tscn" id="5_q3jeo"]
+[ext_resource type="PackedScene" uid="uid://cq5mwrshkfgnq" path="res://Scenes/HUD.tscn" id="6_i20od"]
 
 [node name="Main" type="Node"]
-script = ExtResource("1_v5wh4")
-MobScene = ExtResource("2_rytcr")
+script = ExtResource("1_gr5jo")
+MobScene = ExtResource("2_nn127")
 
-[node name="Player" parent="." instance=ExtResource("1_865u6")]
+[node name="Player" parent="." instance=ExtResource("3_ohotn")]
 position = Vector2(704, 360)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="EnemySpawner" type="Node2D" parent="Player/Camera2D" node_paths=PackedStringArray("SpawnPoints")]
 position = Vector2(-632, -320)
-script = ExtResource("5_p7ic5")
-EnemyScene = ExtResource("5_523g4")
+script = ExtResource("4_vwa7w")
+EnemyScene = ExtResource("5_q3jeo")
 SpawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4")]
 EnemyPerSeconds = 2.0
 
@@ -43,7 +43,7 @@ one_shot = true
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(640, 320)
 
-[node name="HUD" parent="." instance=ExtResource("4_q1v7b")]
+[node name="HUD" parent="." instance=ExtResource("6_i20od")]
 
 [connection signal="Hit" from="Player" to="." method="GameOver"]
 [connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimerTimeout"]

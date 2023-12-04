@@ -9,19 +9,7 @@ public partial class Main : Node
     public int Score;
     public void GameOver()
     {
-        // Correct the node path as necessary.
-        var mobTimer = GetNodeOrNull<Timer>("MobTimer");
-
-        if (mobTimer != null)
-        {
-            mobTimer.Stop();
-        }
-        else
-        {
-            GD.Print("MobTimer node not found!");
-        }
-
-        var scoreTimer = GetNodeOrNull<Timer>("ScoreTimer");
+        Timer scoreTimer = GetNodeOrNull<Timer>("ScoreTimer");
         if (scoreTimer != null)
         {
             scoreTimer.Stop();
@@ -34,6 +22,7 @@ public partial class Main : Node
     public void NewGame()
     {
         GetTree().CallGroup("enemy", Node.MethodName.QueueFree);
+        GetTree().CallGroup("pickup", Node.MethodName.QueueFree);
         Score = 0;
 
         Player player = GetNode<Player>("Player");

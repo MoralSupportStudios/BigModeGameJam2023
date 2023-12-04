@@ -35,7 +35,7 @@ public partial class HUD : CanvasLayer
 
     public void ShowMessage(string text)
     {
-        var message = GetNode<Label>("Message");
+        Label message = GetNode<Label>("Message");
         message.Text = text;
         message.Show();
 
@@ -45,10 +45,10 @@ public partial class HUD : CanvasLayer
     {
         ShowMessage("Game Over");
 
-        var messageTimer = GetNode<Timer>("MessageTimer");
+        Timer messageTimer = GetNode<Timer>("MessageTimer");
         await ToSignal(messageTimer, Timer.SignalName.Timeout);
 
-        var message = GetNode<Label>("Message");
+        Label message = GetNode<Label>("Message");
         message.Text = "Shoot with Left Click! Move with WASD or Arrow Keys";
         message.Show();
 

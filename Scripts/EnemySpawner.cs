@@ -15,9 +15,7 @@ public partial class EnemySpawner : Node2D
 
     public override void _Process(double delta)
     {
-        // Corrected node path to access the Player as a sibling
-        //Player player = GetNodeOrNull<Player>("../Player");
-        var player = GetTree().Root.GetNodeOrNull<Player>("Main/Player");
+        Player player = GetTree().Root.GetNodeOrNull<Player>("Main/Player");
 
         if (player != null && player.IsVisibleInTree())
         {
@@ -39,6 +37,7 @@ public partial class EnemySpawner : Node2D
 
             //Remove all enemies from the scene
             GetTree().CallGroup("enemy", Node.MethodName.QueueFree);
+            GetTree().CallGroup("pickup", Node.MethodName.QueueFree);
         }
     }
 
