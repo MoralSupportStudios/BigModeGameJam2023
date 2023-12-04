@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://brs1rrbd6kp1v"]
+
+[ext_resource type="Script" path="res://Scenes/Boomerang.cs" id="1_lckxc"]
+[ext_resource type="Texture2D" uid="uid://d0q5kjdvns6n6" path="res://Sprites/Banana.png" id="2_wri0j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_huikh"]
+radius = 32.0
+
+[node name="Boomerang" type="RigidBody2D"]
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+lock_rotation = true
+script = ExtResource("1_lckxc")
+
+[node name="GFX" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_wri0j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_huikh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="timeout" from="Timer" to="." method="OnReturnTimerTimeout"]
