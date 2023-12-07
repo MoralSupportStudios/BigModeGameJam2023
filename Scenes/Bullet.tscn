@@ -19,7 +19,7 @@ texture = ExtResource("2_rh5v0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_huikh")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." groups=["bullet"]]
 wait_time = 2.0
 one_shot = true
 autostart = true
