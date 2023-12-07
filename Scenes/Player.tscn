@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfcwy876ohq07"]
+[gd_scene load_steps=10 format=3 uid="uid://dfcwy876ohq07"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_jycjc"]
 [ext_resource type="Texture2D" uid="uid://t0xqeponxmk1" path="res://Sprites/art/playerGrey_up1.png" id="2_bg8ef"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://d3dlm4ibmrwsl" path="res://Sprites/art/playerGrey_walk1.png" id="4_6j0uy"]
 [ext_resource type="Texture2D" uid="uid://7ywldejwc3wr" path="res://Sprites/art/playerGrey_walk2.png" id="5_jmpbr"]
 [ext_resource type="Script" path="res://Scripts/Gun.cs" id="6_2ni0s"]
-[ext_resource type="PackedScene" uid="uid://wli848kjulqy" path="res://Scenes/Bullet.tscn" id="7_6ky0c"]
 [ext_resource type="Script" path="res://Scripts/Health.cs" id="8_sviry"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1fv2"]
@@ -53,7 +52,6 @@ shape = SubResource("CapsuleShape2D_84rkd")
 [node name="Gun" type="Node2D" parent="."]
 position = Vector2(72, 0)
 script = ExtResource("6_2ni0s")
-bulletScene = ExtResource("7_6ky0c")
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("8_sviry")

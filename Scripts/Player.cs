@@ -48,7 +48,7 @@ public partial class Player : Area2D
             velocity.Y -= 1;
         }
 
-        var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        AnimatedSprite2D animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
         if (velocity.Length() > 0)
         {
