@@ -12,10 +12,15 @@ public partial class Bullet : RigidBody2D
 
     public void OnBodyEntered(Node2D body)
     {
-        if(body.IsInGroup("enemy"))
+        if (body.IsInGroup("enemy"))
         {
             body.GetNode<Health>("Health").Damage(damage);
         }
+        if (!body.IsInGroup("bullet"))
+        {
+            return;
+        }
         QueueFree();
+
     }
 }

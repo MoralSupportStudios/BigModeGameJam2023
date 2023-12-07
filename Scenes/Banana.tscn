@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://brs1rrbd6kp1v"]
+[gd_scene load_steps=4 format=3 uid="uid://dhvug5qpqqoq"]
 
-[ext_resource type="Script" path="res://Scenes/Boomerang.cs" id="1_lckxc"]
+[ext_resource type="Script" path="res://Scripts/Boomerang.cs" id="1_2hlgd"]
 [ext_resource type="Texture2D" uid="uid://d0q5kjdvns6n6" path="res://Sprites/Banana.png" id="2_wri0j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_huikh"]
@@ -11,7 +11,7 @@ gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
 lock_rotation = true
-script = ExtResource("1_lckxc")
+script = ExtResource("1_2hlgd")
 
 [node name="GFX" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)

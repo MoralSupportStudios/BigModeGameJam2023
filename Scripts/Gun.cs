@@ -4,34 +4,34 @@ using System;
 
 public partial class Gun : Node2D
 {
-	public enum BabyMode
-	{
+    public enum BabyMode
+    {
         MilkBullet,
         BananaBoomerang,
         StinkTrail,
         GhostPower,
     }
-	[Export] PackedScene[] bulletScenes;
-	[Export] float bulletSpeed = 600f;
-	[Export] float bulletPerSecond = 5f;
-	[Export] float bulletDamage = 1f;
+    [Export] PackedScene[] bulletScenes;
+    [Export] float bulletSpeed = 600f;
+    [Export] float bulletPerSecond = 5f;
+    [Export] float bulletDamage = 1f;
 
-	private BabyMode currentBabyMode = BabyMode.MilkBullet;
-	float fireRate;
-	float timeUntilFire = 0f;
-	Dictionary<BabyMode, PackedScene> babyModeBullet;
+    private BabyMode currentBabyMode = BabyMode.MilkBullet;
+    float fireRate;
+    float timeUntilFire = 0f;
+    Dictionary<BabyMode, PackedScene> babyModeBullet;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
         fireRate = 1f / bulletPerSecond;
 
-		babyModeBullet = new Dictionary<BabyMode, PackedScene>()
-		{
-			{ BabyMode.MilkBullet, bulletScenes[0] },
-			{ BabyMode.BananaBoomerang, bulletScenes[1] },
-			//{ BabyMode.StinkTrail, bulletScene[2] },
-			//{ BabyMode.GhostPower, bulletScene[3] },
+        babyModeBullet = new Dictionary<BabyMode, PackedScene>()
+        {
+            { BabyMode.MilkBullet, bulletScenes[0] },
+            { BabyMode.BananaBoomerang, bulletScenes[1] },
+            { BabyMode.StinkTrail, bulletScenes[2] },
+            { BabyMode.GhostPower, bulletScenes[3] },
         };
     }
 
@@ -76,7 +76,6 @@ public partial class Gun : Node2D
 
     private void FireBullet()
     {
-        // Ensure the current mode has an assigned scene.
         if ((int)currentBabyMode >= bulletScenes.Length || bulletScenes[(int)currentBabyMode] == null)
         {
             GD.Print("No bullet scene assigned for this BabyMode or scene is null.");
@@ -86,20 +85,49 @@ public partial class Gun : Node2D
         PackedScene bulletScene = bulletScenes[(int)currentBabyMode];
         if (bulletScene != null)
         {
-            RigidBody2D bulletInstance = bulletScene.Instantiate<RigidBody2D>();
+            switch (currentBabyMode)
+            {
+                case BabyMode.GhostPower:
 
-            bulletInstance.Rotation = GlobalRotation;
-            bulletInstance.GlobalPosition = GlobalPosition;
-            bulletInstance.LinearVelocity = new Vector2(bulletSpeed, 0).Rotated(bulletInstance.Rotation);
+                    // Define the spread and number of bullets
+                    int numberOfBullets = 5; // Number of bullets in the spread
+                    float spreadAngle = 45.0f; // Total angle of spread
 
-            // Set common properties for all bullets, if any
-            // e.g., damage, bullet owner, etc.
+                    // Calculate the angle between each bullet
+                    float angleStep = spreadAngle / (numberOfBullets - 1);
+                    float currentAngle = GlobalRotation - Mathf.DegToRad(spreadAngle) / 2;
 
-            GetTree().Root.AddChild(bulletInstance);
-        }
-        else
-        {
-            GD.Print("Bullet scene not found for mode: " + currentBabyMode.ToString());
+                    for (int i = 0; i < numberOfBullets; i++)
+                    {
+                        // Instantiate a new bullet
+                        RigidBody2D ghostBullet = bulletScene.Instantiate<RigidBody2D>();
+                        ghostBullet.Rotation = currentAngle;
+                        ghostBullet.GlobalPosition = GlobalPosition;
+                        ghostBullet.LinearVelocity = new Vector2(bulletSpeed, 0).Rotated(currentAngle);
+
+                        GetTree().Root.AddChild(ghostBullet);
+
+                        // Increment the angle for the next bullet
+                        currentAngle += Mathf.DegToRad(angleStep);
+                    }
+                    break;
+                case BabyMode.StinkTrail:
+                    // For StinkTrail, instance it at the player's position
+                    Area2D stinkTrailInstance = bulletScene.Instantiate<Area2D>();
+                    stinkTrailInstance.GlobalPosition = GlobalPosition; // Or some offset from the player's position
+                    GetTree().Root.AddChild(stinkTrailInstance);
+                    break;
+                default:
+                    // For other bullet types, use the existing logic
+                    RigidBody2D bulletInstance = bulletScene.Instantiate<RigidBody2D>();
+                    bulletInstance.Rotation = GlobalRotation;
+                    bulletInstance.GlobalPosition = GlobalPosition;
+                    bulletInstance.LinearVelocity = new Vector2(bulletSpeed, 0).Rotated(bulletInstance.Rotation);
+                    GetTree().Root.AddChild(bulletInstance);
+
+                    break;
+            }
         }
     }
+
 }
