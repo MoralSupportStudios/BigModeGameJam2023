@@ -1,15 +1,31 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfcwy876ohq07"]
+[gd_scene load_steps=29 format=3 uid="uid://dfcwy876ohq07"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_jycjc"]
 [ext_resource type="Texture2D" uid="uid://t0xqeponxmk1" path="res://Sprites/art/playerGrey_up1.png" id="2_bg8ef"]
 [ext_resource type="Texture2D" uid="uid://iesu5u10hvtg" path="res://Sprites/art/playerGrey_up2.png" id="3_cvr1i"]
-[ext_resource type="Texture2D" uid="uid://d3dlm4ibmrwsl" path="res://Sprites/art/playerGrey_walk1.png" id="4_6j0uy"]
-[ext_resource type="Texture2D" uid="uid://7ywldejwc3wr" path="res://Sprites/art/playerGrey_walk2.png" id="5_jmpbr"]
+[ext_resource type="Texture2D" uid="uid://vwub5y2iw7dc" path="res://Scenes/Milk Baby v2 walking_00002.png" id="5_ure70"]
 [ext_resource type="Script" path="res://Scripts/Gun.cs" id="6_2ni0s"]
+[ext_resource type="Texture2D" uid="uid://cgf27hu4xgjbj" path="res://Scenes/Milk Baby v2 walking_00003.png" id="6_dit0e"]
+[ext_resource type="Texture2D" uid="uid://udo7favafcqf" path="res://Scenes/Milk Baby v2 walking_00001.png" id="6_gg8lj"]
 [ext_resource type="PackedScene" uid="uid://wli848kjulqy" path="res://Scenes/Bullet.tscn" id="7_6ky0c"]
+[ext_resource type="Texture2D" uid="uid://c223fh83esv5m" path="res://Scenes/Milk Baby v2 walking_00004.png" id="7_s04dr"]
+[ext_resource type="Texture2D" uid="uid://dutyanws08r4t" path="res://Scenes/Milk Baby v2 walking_00005.png" id="8_dhi62"]
 [ext_resource type="Script" path="res://Scripts/Health.cs" id="8_sviry"]
 [ext_resource type="PackedScene" uid="uid://dhvug5qpqqoq" path="res://Scenes/Banana.tscn" id="8_u0dax"]
 [ext_resource type="PackedScene" uid="uid://d084ln2jhtf37" path="res://Scenes/StinkTrail.tscn" id="9_e1qvp"]
+[ext_resource type="Texture2D" uid="uid://dh8gxgqc3baa3" path="res://Scenes/Milk Baby v2 walking_00006.png" id="9_rho6a"]
+[ext_resource type="Texture2D" uid="uid://3fcq7ln1rciu" path="res://Scenes/Milk Baby v2 walking_00007.png" id="10_o81mq"]
+[ext_resource type="Texture2D" uid="uid://ctkpaah8xcml3" path="res://Scenes/Milk Baby v2 walking_00015.png" id="11_n6n6b"]
+[ext_resource type="Texture2D" uid="uid://bqe5os7833bs5" path="res://Scenes/Milk Baby v2 walking_00008.png" id="12_p201b"]
+[ext_resource type="Texture2D" uid="uid://d348s08jlbq32" path="res://Scenes/Milk Baby v2 walking_00009.png" id="13_2f4b1"]
+[ext_resource type="Texture2D" uid="uid://ccdu1h0rxk6eg" path="res://Scenes/Milk Baby v2 walking_00010.png" id="14_5altk"]
+[ext_resource type="Texture2D" uid="uid://ls2gpa6xgh8i" path="res://Scenes/Milk Baby v2 walking_00011.png" id="15_0fpaj"]
+[ext_resource type="Texture2D" uid="uid://bbb4opb3khx4r" path="res://Scenes/Milk Baby v2 walking_00012.png" id="16_vix13"]
+[ext_resource type="Texture2D" uid="uid://bnf4sbjnfmgv5" path="res://Scenes/Milk Baby v2 walking_00013.png" id="17_6jpax"]
+[ext_resource type="Texture2D" uid="uid://bdu3q3m76ownj" path="res://Scenes/Milk Baby v2 walking_00014.png" id="18_0m1fb"]
+[ext_resource type="Texture2D" uid="uid://bu80fn5d08lln" path="res://Scenes/Milk Baby v2 walking_00016.png" id="19_fhcsx"]
+[ext_resource type="Texture2D" uid="uid://bt0qlrpxlfrpy" path="res://Scenes/Milk Baby v2 walking_00017.png" id="20_4h46t"]
+[ext_resource type="Texture2D" uid="uid://dxfn2f7begv41" path="res://Scenes/Milk Baby v2 walking_00018.png" id="21_03krm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1fv2"]
 animations = [{
@@ -26,14 +42,62 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_6j0uy")
+"texture": ExtResource("6_gg8lj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_jmpbr")
+"texture": ExtResource("5_ure70")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dit0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_s04dr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dhi62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rho6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_o81mq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_n6n6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_p201b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_2f4b1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5altk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_0fpaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_vix13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_6jpax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_0m1fb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_fhcsx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_4h46t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_03krm")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 18.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_84rkd"]
@@ -45,9 +109,8 @@ script = ExtResource("1_jycjc")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_e1fv2")
-animation = &"up"
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_84rkd")
