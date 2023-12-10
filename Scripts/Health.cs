@@ -22,5 +22,18 @@ public partial class Health : Node2D
             }
             //GetParent().QueueFree();
         }
+        else
+        {
+            if(GetParent().HasMethod("Damaged"))
+            {
+                GetParent().Call("Damaged");
+                
+            }
+        }
     }
+    public float GetHealthPercentage()
+    {
+        return CurrentHealth / MaxHealth;
+    }
+
 }

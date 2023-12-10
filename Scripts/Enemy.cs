@@ -78,4 +78,13 @@ public partial class Enemy : CharacterBody2D
         GetParent().CallDeferred("add_child", pickupInstance);
         QueueFree();
     }
+    public void Damaged()
+    {
+        var healthComponent = GetNode<Health>("Health");
+        float healthPercentage = healthComponent.GetHealthPercentage();
+
+        var image = GetNode<Sprite2D>("GFX");
+        image.SelfModulate = new Color(1, 1 - healthPercentage, 1 - healthPercentage);
+    }
+
 }

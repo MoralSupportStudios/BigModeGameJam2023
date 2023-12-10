@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b74nept1ac6dx"]
+[gd_scene load_steps=7 format=3 uid="uid://b74nept1ac6dx"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ay727"]
 [ext_resource type="Texture2D" uid="uid://b6wkon3ult76g" path="res://Sprites/Player.png" id="2_dc5qb"]
 [ext_resource type="PackedScene" uid="uid://bf67hbpdaipqf" path="res://Scenes/Pickup.tscn" id="2_tjw3s"]
 [ext_resource type="Script" path="res://Scripts/Health.cs" id="3_rshdq"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rh3k8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_652f0"]
 radius = 35.0571
@@ -18,7 +16,6 @@ script = ExtResource("1_ay727")
 pickupScene = ExtResource("2_tjw3s")
 
 [node name="GFX" type="Sprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_rh3k8")
 texture = ExtResource("2_dc5qb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
