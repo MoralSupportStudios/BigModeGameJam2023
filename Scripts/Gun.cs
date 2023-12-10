@@ -54,7 +54,7 @@ public partial class Gun : Node2D
     public override void _Process(double delta)
     {
         Player player = GetTree().Root.GetNodeOrNull<Player>("Main/Player");
-
+        LookAt(GetGlobalMousePosition());
         if (player != null && player.IsVisibleInTree())
         {
             if (Input.IsActionJustPressed("RightClick"))

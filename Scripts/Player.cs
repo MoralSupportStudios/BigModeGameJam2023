@@ -25,7 +25,7 @@ public partial class Player : Area2D
 		if (!IsInstanceValid(this))
 			return;
 
-		LookAt(GetGlobalMousePosition());
+		//LookAt(GetGlobalMousePosition());
 		Vector2 velocity = Vector2.Zero; // The player's movement vector.
 
 		if (Input.IsActionPressed("ui_right"))
@@ -70,11 +70,6 @@ public partial class Player : Area2D
 			animatedSprite2D.FlipV = false;
 			// See the note below about boolean assignment.
 			animatedSprite2D.FlipH = velocity.X < 0;
-		}
-		else if (velocity.Y != 0)
-		{
-			animatedSprite2D.Animation = "up";
-			animatedSprite2D.FlipV = velocity.Y > 0;
 		}
 	}
 	public void Start(Vector2 position)

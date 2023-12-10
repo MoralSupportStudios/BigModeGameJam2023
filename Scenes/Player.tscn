@@ -38,7 +38,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"up",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -97,7 +97,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 18.0
+"speed": 17.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_84rkd"]
@@ -105,12 +105,15 @@ radius = 56.0
 height = 144.0
 
 [node name="Player" type="Area2D" groups=["player"]]
+position = Vector2(262, 236)
 script = ExtResource("1_jycjc")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_e1fv2")
 animation = &"walk"
+frame_progress = 0.287863
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_84rkd")
