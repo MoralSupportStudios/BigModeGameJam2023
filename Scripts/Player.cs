@@ -25,7 +25,6 @@ public partial class Player : Area2D
 		if (!IsInstanceValid(this))
 			return;
 
-		//LookAt(GetGlobalMousePosition());
 		Vector2 velocity = Vector2.Zero; // The player's movement vector.
 
 		if (Input.IsActionPressed("ui_right"))
@@ -60,10 +59,6 @@ public partial class Player : Area2D
 			animatedSprite2D.Stop();
 		}
 		Position += velocity * (float)delta;
-		//Position = new Vector2(
-		//    x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
-		//    y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
-		//);
 		if (velocity.X != 0)
 		{
 			animatedSprite2D.Animation = "walk";

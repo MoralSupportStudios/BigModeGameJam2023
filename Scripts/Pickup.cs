@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static System.Formats.Asn1.AsnWriter;
 
 public partial class Pickup : Area2D
 {
@@ -21,6 +22,9 @@ public partial class Pickup : Area2D
 		if(area.IsInGroup("player"))
 		{
             EmitSignal(SignalName.Collected);
+			GetTree().Root.GetNode<Main>("Main").Score++;
+			var score = GetTree().Root.GetNode<Main>("Main").Score;
+            GetTree().Root.GetNode<Main>("Main").GetNode<HUD>("HUD").UpdateScore(score);
             QueueFree();
         }
 	}

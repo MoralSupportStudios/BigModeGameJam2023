@@ -15,7 +15,7 @@ public partial class Main : Node
 			scoreTimer.Stop();
 		}
 
-		GetNode<HUD>("HUD").ShowGameOver();
+		GetNode<HUD>("HUD").ShowGameOver(Score);
 	}
 
 

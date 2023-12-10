@@ -41,9 +41,9 @@ public partial class HUD : CanvasLayer
 
         GetNode<Timer>("MessageTimer").Start();
     }
-    async public void ShowGameOver()
+    async public void ShowGameOver(int score)
     {
-        ShowMessage("Game Over");
+        ShowMessage("Final Score = " + score);
 
         Timer messageTimer = GetNode<Timer>("MessageTimer");
         await ToSignal(messageTimer, Timer.SignalName.Timeout);
