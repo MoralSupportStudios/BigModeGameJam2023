@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdu3q3m76ownj"
-path="res://.godot/imported/Milk Baby v2 walking_00014.png-4d9ae6be52822d90bd0a5160645e15c5.ctex"
+path="res://.godot/imported/Milk Baby v2 walking_00014.png-80fb087e301eff01e528219161478de3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Milk Baby v2 walking_00014.png"
-dest_files=["res://.godot/imported/Milk Baby v2 walking_00014.png-4d9ae6be52822d90bd0a5160645e15c5.ctex"]
+source_file="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00014.png"
+dest_files=["res://.godot/imported/Milk Baby v2 walking_00014.png-80fb087e301eff01e528219161478de3.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbb4opb3khx4r"
-path="res://.godot/imported/Milk Baby v2 walking_00012.png-94d07a04837281834cbe771e1dd45d4f.ctex"
+uid="uid://d348s08jlbq32"
+path="res://.godot/imported/Milk Baby v2 walking_00009.png-a2e9a7f824b045202624109076ad254b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Milk Baby v2 walking_00012.png"
-dest_files=["res://.godot/imported/Milk Baby v2 walking_00012.png-94d07a04837281834cbe771e1dd45d4f.ctex"]
+source_file="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00009.png"
+dest_files=["res://.godot/imported/Milk Baby v2 walking_00009.png-a2e9a7f824b045202624109076ad254b.ctex"]
 
 [params]
 

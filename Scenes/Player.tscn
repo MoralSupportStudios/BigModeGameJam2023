@@ -3,29 +3,29 @@
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_jycjc"]
 [ext_resource type="Texture2D" uid="uid://t0xqeponxmk1" path="res://Sprites/art/playerGrey_up1.png" id="2_bg8ef"]
 [ext_resource type="Texture2D" uid="uid://iesu5u10hvtg" path="res://Sprites/art/playerGrey_up2.png" id="3_cvr1i"]
-[ext_resource type="Texture2D" uid="uid://vwub5y2iw7dc" path="res://Scenes/Milk Baby v2 walking_00002.png" id="5_ure70"]
+[ext_resource type="Texture2D" uid="uid://udo7favafcqf" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00001.png" id="4_t8f3x"]
+[ext_resource type="Texture2D" uid="uid://vwub5y2iw7dc" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00002.png" id="5_rgksr"]
 [ext_resource type="Script" path="res://Scripts/Gun.cs" id="6_2ni0s"]
-[ext_resource type="Texture2D" uid="uid://cgf27hu4xgjbj" path="res://Scenes/Milk Baby v2 walking_00003.png" id="6_dit0e"]
-[ext_resource type="Texture2D" uid="uid://udo7favafcqf" path="res://Scenes/Milk Baby v2 walking_00001.png" id="6_gg8lj"]
+[ext_resource type="Texture2D" uid="uid://cgf27hu4xgjbj" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00003.png" id="6_aldm5"]
 [ext_resource type="PackedScene" uid="uid://wli848kjulqy" path="res://Scenes/Bullet.tscn" id="7_6ky0c"]
-[ext_resource type="Texture2D" uid="uid://c223fh83esv5m" path="res://Scenes/Milk Baby v2 walking_00004.png" id="7_s04dr"]
-[ext_resource type="Texture2D" uid="uid://dutyanws08r4t" path="res://Scenes/Milk Baby v2 walking_00005.png" id="8_dhi62"]
+[ext_resource type="Texture2D" uid="uid://c223fh83esv5m" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00004.png" id="7_55jxh"]
+[ext_resource type="Texture2D" uid="uid://dutyanws08r4t" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00005.png" id="8_gpjfc"]
 [ext_resource type="Script" path="res://Scripts/Health.cs" id="8_sviry"]
 [ext_resource type="PackedScene" uid="uid://dhvug5qpqqoq" path="res://Scenes/Banana.tscn" id="8_u0dax"]
 [ext_resource type="PackedScene" uid="uid://d084ln2jhtf37" path="res://Scenes/StinkTrail.tscn" id="9_e1qvp"]
-[ext_resource type="Texture2D" uid="uid://dh8gxgqc3baa3" path="res://Scenes/Milk Baby v2 walking_00006.png" id="9_rho6a"]
-[ext_resource type="Texture2D" uid="uid://3fcq7ln1rciu" path="res://Scenes/Milk Baby v2 walking_00007.png" id="10_o81mq"]
-[ext_resource type="Texture2D" uid="uid://ctkpaah8xcml3" path="res://Scenes/Milk Baby v2 walking_00015.png" id="11_n6n6b"]
-[ext_resource type="Texture2D" uid="uid://bqe5os7833bs5" path="res://Scenes/Milk Baby v2 walking_00008.png" id="12_p201b"]
-[ext_resource type="Texture2D" uid="uid://d348s08jlbq32" path="res://Scenes/Milk Baby v2 walking_00009.png" id="13_2f4b1"]
-[ext_resource type="Texture2D" uid="uid://ccdu1h0rxk6eg" path="res://Scenes/Milk Baby v2 walking_00010.png" id="14_5altk"]
-[ext_resource type="Texture2D" uid="uid://ls2gpa6xgh8i" path="res://Scenes/Milk Baby v2 walking_00011.png" id="15_0fpaj"]
-[ext_resource type="Texture2D" uid="uid://bbb4opb3khx4r" path="res://Scenes/Milk Baby v2 walking_00012.png" id="16_vix13"]
-[ext_resource type="Texture2D" uid="uid://bnf4sbjnfmgv5" path="res://Scenes/Milk Baby v2 walking_00013.png" id="17_6jpax"]
-[ext_resource type="Texture2D" uid="uid://bdu3q3m76ownj" path="res://Scenes/Milk Baby v2 walking_00014.png" id="18_0m1fb"]
-[ext_resource type="Texture2D" uid="uid://bu80fn5d08lln" path="res://Scenes/Milk Baby v2 walking_00016.png" id="19_fhcsx"]
-[ext_resource type="Texture2D" uid="uid://bt0qlrpxlfrpy" path="res://Scenes/Milk Baby v2 walking_00017.png" id="20_4h46t"]
-[ext_resource type="Texture2D" uid="uid://dxfn2f7begv41" path="res://Scenes/Milk Baby v2 walking_00018.png" id="21_03krm"]
+[ext_resource type="Texture2D" uid="uid://dh8gxgqc3baa3" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00006.png" id="9_qdhah"]
+[ext_resource type="Texture2D" uid="uid://3fcq7ln1rciu" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00007.png" id="10_cqipj"]
+[ext_resource type="Texture2D" uid="uid://ctkpaah8xcml3" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00015.png" id="11_7nur3"]
+[ext_resource type="Texture2D" uid="uid://bqe5os7833bs5" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00008.png" id="12_rsetg"]
+[ext_resource type="Texture2D" uid="uid://d348s08jlbq32" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00009.png" id="13_w7g2j"]
+[ext_resource type="Texture2D" uid="uid://ccdu1h0rxk6eg" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00010.png" id="14_2vdrc"]
+[ext_resource type="Texture2D" uid="uid://ls2gpa6xgh8i" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00011.png" id="15_ksh08"]
+[ext_resource type="Texture2D" uid="uid://bbb4opb3khx4r" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00012.png" id="16_cs5xx"]
+[ext_resource type="Texture2D" uid="uid://bnf4sbjnfmgv5" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00013.png" id="17_yar5a"]
+[ext_resource type="Texture2D" uid="uid://bdu3q3m76ownj" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00014.png" id="18_du8b5"]
+[ext_resource type="Texture2D" uid="uid://bu80fn5d08lln" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00016.png" id="19_wijlu"]
+[ext_resource type="Texture2D" uid="uid://bt0qlrpxlfrpy" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00017.png" id="20_valjb"]
+[ext_resource type="Texture2D" uid="uid://dxfn2f7begv41" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00018.png" id="21_8d1xh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1fv2"]
 animations = [{
@@ -42,58 +42,58 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_gg8lj")
+"texture": ExtResource("4_t8f3x")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ure70")
+"texture": ExtResource("5_rgksr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_dit0e")
+"texture": ExtResource("6_aldm5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_s04dr")
+"texture": ExtResource("7_55jxh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_dhi62")
+"texture": ExtResource("8_gpjfc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_rho6a")
+"texture": ExtResource("9_qdhah")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_o81mq")
+"texture": ExtResource("10_cqipj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_n6n6b")
+"texture": ExtResource("11_7nur3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_p201b")
+"texture": ExtResource("12_rsetg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_2f4b1")
+"texture": ExtResource("13_w7g2j")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_5altk")
+"texture": ExtResource("14_2vdrc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_0fpaj")
+"texture": ExtResource("15_ksh08")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_vix13")
+"texture": ExtResource("16_cs5xx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_6jpax")
+"texture": ExtResource("17_yar5a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_0m1fb")
+"texture": ExtResource("18_du8b5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_fhcsx")
+"texture": ExtResource("19_wijlu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("20_4h46t")
+"texture": ExtResource("20_valjb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("21_03krm")
+"texture": ExtResource("21_8d1xh")
 }],
 "loop": true,
 "name": &"walk",
