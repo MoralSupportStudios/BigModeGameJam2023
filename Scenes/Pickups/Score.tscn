@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf67hbpdaipqf"]
+
+[ext_resource type="Script" path="res://Scripts/Pickup.cs" id="1_fsc1s"]
+[ext_resource type="Texture2D" uid="uid://gd2e0od3otkd" path="res://Sprites/Final/Score candy.png" id="2_38h07"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ddetx"]
+radius = 16.0
+
+[node name="Pickup" type="Area2D" groups=["pickup"]]
+script = ExtResource("1_fsc1s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_38h07")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ddetx")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]

@@ -20,10 +20,11 @@ position = Vector2(704, 360)
 position = Vector2(-632, -320)
 script = ExtResource("4_vwa7w")
 EnemyScene = ExtResource("5_q3jeo")
-SpawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4")]
+SpawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6"), NodePath("SpawnPoint7"), NodePath("SpawnPoint8")]
 EnemyPerSeconds = 2.0
 
 [node name="SpawnPoint" type="Node2D" parent="Player/Camera2D/EnemySpawner"]
+position = Vector2(-8, -96)
 
 [node name="SpawnPoint2" type="Node2D" parent="Player/Camera2D/EnemySpawner"]
 position = Vector2(1288, 8)
@@ -34,11 +35,26 @@ position = Vector2(1280, 728)
 [node name="SpawnPoint4" type="Node2D" parent="Player/Camera2D/EnemySpawner"]
 position = Vector2(8, 720)
 
+[node name="SpawnPoint5" type="Node2D" parent="Player/Camera2D/EnemySpawner"]
+position = Vector2(632, -104)
+
+[node name="SpawnPoint6" type="Node2D" parent="Player/Camera2D/EnemySpawner"]
+position = Vector2(632, 728)
+
+[node name="SpawnPoint7" type="Node2D" parent="Player/Camera2D/EnemySpawner"]
+position = Vector2(1288, 344)
+
+[node name="SpawnPoint8" type="Node2D" parent="Player/Camera2D/EnemySpawner"]
+position = Vector2(-24, 344)
+
 [node name="ScoreTimer" type="Timer" parent="."]
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="HealthIncreaseTimer" type="Timer" parent="."]
+wait_time = 10.0
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(640, 320)
@@ -48,4 +64,5 @@ position = Vector2(640, 320)
 [connection signal="Hit" from="Player" to="." method="GameOver"]
 [connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimerTimeout"]
 [connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]
+[connection signal="timeout" from="HealthIncreaseTimer" to="." method="OnHealthIncreaseTimerTimeout"]
 [connection signal="StartGame" from="HUD" to="." method="NewGame"]

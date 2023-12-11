@@ -48,6 +48,13 @@ public partial class EnemySpawner : Node2D
         Vector2 location = SpawnPoints[rng.Randi() % SpawnPoints.Length].GlobalPosition;
         Enemy enemy = (Enemy)EnemyScene.Instantiate();
 		enemy.GlobalPosition = location;
-		GetTree().Root.AddChild(enemy);
+        Main main = GetTree().Root.GetNode<Main>("Main");
+        float healthToAdd = main.GetHealthIncrement();
+        EnemyPerSeconds = main.GetSpawnIncrement();
+
+        // Increase the enemy's maximum health
+        enemy.GetNode<Health>("Health").MaxHealth += healthToAdd;
+
+        GetTree().Root.AddChild(enemy);
     }
 }

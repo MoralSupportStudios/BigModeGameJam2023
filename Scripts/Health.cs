@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Health : Node2D
 {
@@ -20,17 +19,25 @@ public partial class Health : Node2D
             {
                 GetParent().Call("Die");
             }
-            //GetParent().QueueFree();
         }
         else
         {
             if(GetParent().HasMethod("Damaged"))
             {
                 GetParent().Call("Damaged");
-                
+                GD.Print(damage + " taken");
             }
         }
     }
+
+    public void Heal(float heal)
+    {
+        if(CurrentHealth <= MaxHealth)
+        {
+            CurrentHealth += heal;
+        }
+    }
+
     public float GetHealthPercentage()
     {
         return CurrentHealth / MaxHealth;

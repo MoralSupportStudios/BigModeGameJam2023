@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://wli848kjulqy"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1_ahnfe"]
-[ext_resource type="Texture2D" uid="uid://wq4xlfcauitl" path="res://Sprites/Coin.png" id="2_rh5v0"]
+[ext_resource type="Texture2D" uid="uid://deq3a2j2i3no4" path="res://Sprites/Final/Milk shot.png" id="2_lxds0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_huikh"]
 radius = 16.0
 
-[node name="Bullet" type="RigidBody2D"]
+[node name="Bullet" type="RigidBody2D" groups=["bullet"]]
 gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
@@ -14,12 +14,13 @@ lock_rotation = true
 script = ExtResource("1_ahnfe")
 
 [node name="GFX" type="Sprite2D" parent="."]
-texture = ExtResource("2_rh5v0")
+scale = Vector2(2, 2)
+texture = ExtResource("2_lxds0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_huikh")
 
-[node name="Timer" type="Timer" parent="." groups=["bullet"]]
+[node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 autostart = true

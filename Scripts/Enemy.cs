@@ -1,9 +1,13 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Enemy : CharacterBody2D
 {
-    [Export] PackedScene pickupScene;
+    [Export]
+    public PackedScene[] PickupScenes; // Holds the different pickup scenes
+
+    //[Export] PackedScene pickupScene;
     Player player;
 	[Export] public float Speed { get; set; } = 200f;
 	[Export] float damage = 1f;
@@ -73,18 +77,65 @@ public partial class Enemy : CharacterBody2D
 	}
     public void Die()
     {
-        Pickup pickupInstance = (Pickup)pickupScene.Instantiate();
-        pickupInstance.Position = Position;
-        GetParent().CallDeferred("add_child", pickupInstance);
+        // Calculate which pickup to drop, if any
+        PickupType selectedPickup = SelectRandomWeighted();
+
+        // If 'Nothing' is selected, we don't drop anything
+        if (selectedPickup != PickupType.Nothing)
+        {
+            // Instantiate the selected pickup
+            PackedScene pickupScene = PickupScenes[(int)selectedPickup];
+            Node2D pickupInstance = (Node2D)pickupScene.Instantiate();
+            pickupInstance.Position = Position;
+            GetParent().CallDeferred("add_child", pickupInstance);
+        }
+
         QueueFree();
+        //Pickup pickupInstance = (Pickup)pickupScene.Instantiate();
+        //pickupInstance.Position = Position;
+        
+        //QueueFree();
+    }
+    private PickupType SelectRandomWeighted()
+    {
+        var weights = new Dictionary<PickupType, int>
+        {
+            { PickupType.Score, 20 },
+            { PickupType.Health, 5 },
+            { PickupType.Milk, 5 },
+            { PickupType.Banana, 2 },
+            { PickupType.Stink, 3 },
+            { PickupType.Ghost, 1 },
+            { PickupType.Nothing, 64 }
+        };
+
+        int totalWeight = 0;
+        foreach (var weight in weights.Values)
+        {
+            totalWeight += weight;
+        }
+
+        int randomValue = new Random().Next(0, totalWeight);
+        foreach (var kvp in weights)
+        {
+            if (randomValue < kvp.Value)
+            {
+                return kvp.Key;
+            }
+            randomValue -= kvp.Value;
+        }
+
+        return PickupType.Nothing;
     }
     public void Damaged()
     {
         var healthComponent = GetNode<Health>("Health");
         float healthPercentage = healthComponent.GetHealthPercentage();
 
-        var image = GetNode<Sprite2D>("GFX");
-        image.SelfModulate = new Color(1, 1 - healthPercentage, 1 - healthPercentage);
+        // As the enemy gets more damaged, we increase the red component and decrease the green and blue ones.
+        var image = GetNode<Sprite2D>("GFX"); // Ensure the node name and type match your scene
+        image.SelfModulate = new Color(1, healthPercentage, healthPercentage);
     }
+
 
 }

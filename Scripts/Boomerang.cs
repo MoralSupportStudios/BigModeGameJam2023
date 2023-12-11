@@ -1,70 +1,57 @@
 using Godot;
 using System;
 
-public partial class Boomerang : RigidBody2D
+public partial class Boomerang : Area2D
 {
     [Export] public float damage = 2f;
-    [Export] public float speed = 300f; // Speed of the boomerang
-    [Export] public float range = 500f; // Range before returning
-    [Export] public float returnTime = 1.5f; // Time before the boomerang returns
+    [Export] public float orbitSpeed = 300f; // Speed at which the boomerang orbits
+    [Export] public float returnSpeed = 200f; // Speed at which the boomerang returns
+    [Export] public float orbitRadius = 100f; // Radius of the orbit
 
-    private Vector2 startPosition;
-    private Player player;
+    public Vector2 orbitCenter;
+    private float orbitAngle = 0f;
+    private const float THREE_QUARTERS_TAU = Mathf.Pi * 1.5f; // Represents three-quarters of a full rotation
     private bool isReturning = false;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        startPosition = Position;
-        player = GetTree().Root.GetNodeOrNull<Player>("Main/Player"); // Corrected the scope of the 'player' variable.
-
-        // Assuming you have a Timer node named "Timer" as part of the scene.
-        Timer returnTimer = GetNode<Timer>("Timer"); // Corrected to use the existing Timer node.
-        returnTimer.WaitTime = returnTime;
-        returnTimer.OneShot = true;
-        returnTimer.Start(); // The connection is now made in the editor, so no need to connect in code.
-
-        // Apply initial impulse to the boomerang
-        ApplyCentralImpulse(Transform.X.Normalized() * speed);
-
-        returnTimer.Timeout += () => QueueFree();
+        //orbitCenter = GetTree().Root.GetNode("Main").GetNode("Player").GetNode<Node2D>("Gun").GlobalPosition; // Set the orbit center to the gun's position
     }
 
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _PhysicsProcess(double delta)
-	{
-        if (isReturning)
-        {
-            // Calculate the direction from the bullet to the player
-            Vector2 directionToPlayer = (player.GlobalPosition - GlobalPosition).Normalized();
-            LinearVelocity = directionToPlayer * speed;
-        }
-        else if (Position.DistanceTo(startPosition) > range)
-        {
-            // If the bullet has reached its max range and isn't returning, start the return
-            StartReturn();
-        }
-    }
-    private void StartReturn()
+    public override void _Process(double delta)
     {
-        isReturning = true;
-        // You can add additional effects or changes when the boomerang starts returning
-    }
+        if (!isReturning)
+        {
+            orbitAngle += orbitSpeed * (float)delta / orbitRadius;
 
-    private void OnReturnTimerTimeout()
-    {
-        StartReturn();
+            Vector2 offset = new Vector2(Mathf.Sin(orbitAngle), Mathf.Cos(orbitAngle)) * orbitRadius;
+            GlobalPosition = orbitCenter + offset;
+
+            if (orbitAngle >= THREE_QUARTERS_TAU)
+            {
+                isReturning = true; // Signal that the Boomerang should start returning
+            }
+        }
+        else
+        {
+            // Return to the gun's position
+            Vector2 directionToGun = (orbitCenter - GlobalPosition).Normalized();
+            GlobalPosition += directionToGun * returnSpeed * (float)delta;
+
+            // Check if the Boomerang has reached the Gun's position (within a small threshold)
+            if (GlobalPosition.DistanceTo(orbitCenter) < returnSpeed * (float)delta)
+            {
+                QueueFree(); // Remove the Boomerang from the scene once it has returned
+            }
+        }
     }
 
     private void OnBodyEntered(Node2D body)
     {
-        if (!isReturning && body.IsInGroup("enemy"))
+        if (body.IsInGroup("enemy"))
         {
-            // Deal damage to the enemy
-            body.GetNode<Health>("Health").Damage(damage);
-            // Start returning after hitting an enemy
-            StartReturn();
+            Enemy enemy = (Enemy)body;
+            enemy.GetNode<Health>("Health").Damage(damage);
         }
     }
 }

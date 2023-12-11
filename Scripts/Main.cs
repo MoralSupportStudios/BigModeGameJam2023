@@ -5,8 +5,9 @@ public partial class Main : Node
 {
 	[Export]
 	public PackedScene MobScene { get; set; }
-
-	public int Score;
+    private float healthIncrement = 0f;
+    private float spawnIncrement = 2f;
+    public int Score;
 	public void GameOver()
 	{
 		Timer scoreTimer = GetNodeOrNull<Timer>("ScoreTimer");
@@ -34,10 +35,12 @@ public partial class Main : Node
 		HUD hud = GetNode<HUD>("HUD");
 		hud.UpdateScore(Score);
 		hud.ShowMessage("Get Ready!");
-	}
+
+        GetNode<Timer>("HealthIncreaseTimer").Start();
+    }
 	private void OnScoreTimerTimeout()
 	{
-		Score++;
+		//Score++;
 		GetNode<HUD>("HUD").UpdateScore(Score);
 	}
 
@@ -45,4 +48,21 @@ public partial class Main : Node
 	{
 		GetNode<Timer>("ScoreTimer").Start();
 	}
+    private void OnHealthIncreaseTimerTimeout()
+    {
+        // Increase the health increment
+        healthIncrement ++; // Increase by 10 or whatever value you choose
+		spawnIncrement++;
+
+        GD.Print("Max health is now " +  healthIncrement);
+        GD.Print("Spawn Increment is now " + spawnIncrement);
+    }
+    public float GetHealthIncrement()
+    {
+        return healthIncrement;
+    }
+    public float GetSpawnIncrement()
+    {
+        return spawnIncrement;
+    }
 }

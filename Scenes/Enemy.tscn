@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://b74nept1ac6dx"]
+[gd_scene load_steps=12 format=3 uid="uid://b74nept1ac6dx"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ay727"]
 [ext_resource type="Texture2D" uid="uid://b6wkon3ult76g" path="res://Sprites/Player.png" id="2_dc5qb"]
-[ext_resource type="PackedScene" uid="uid://bf67hbpdaipqf" path="res://Scenes/Pickup.tscn" id="2_tjw3s"]
+[ext_resource type="PackedScene" uid="uid://bf67hbpdaipqf" path="res://Scenes/Pickups/Score.tscn" id="2_ecfnr"]
+[ext_resource type="PackedScene" uid="uid://tqvitj0ks2c6" path="res://Scenes/Pickups/Heal.tscn" id="3_3xi8p"]
 [ext_resource type="Script" path="res://Scripts/Health.cs" id="3_rshdq"]
+[ext_resource type="PackedScene" uid="uid://ikd5bvllkavq" path="res://Scenes/Pickups/Milk.tscn" id="4_x8u1a"]
+[ext_resource type="PackedScene" uid="uid://vq3rgrakk8jv" path="res://Scenes/Pickups/Nana.tscn" id="5_dr5j5"]
+[ext_resource type="PackedScene" uid="uid://bqrywjwhdlw61" path="res://Scenes/Pickups/Stink.tscn" id="6_155j4"]
+[ext_resource type="PackedScene" uid="uid://dqtcyh22120a5" path="res://Scenes/Pickups/Ghost.tscn" id="7_3d3i2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_652f0"]
 radius = 35.0571
@@ -13,7 +18,8 @@ radius = 35.0571
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 motion_mode = 1
 script = ExtResource("1_ay727")
-pickupScene = ExtResource("2_tjw3s")
+PickupScenes = Array[PackedScene]([ExtResource("2_ecfnr"), ExtResource("3_3xi8p"), ExtResource("4_x8u1a"), ExtResource("5_dr5j5"), ExtResource("6_155j4"), ExtResource("7_3d3i2")])
+Speed = 100.0
 
 [node name="GFX" type="Sprite2D" parent="."]
 texture = ExtResource("2_dc5qb")

@@ -1,21 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhvug5qpqqoq"]
 
 [ext_resource type="Script" path="res://Scripts/Boomerang.cs" id="1_2hlgd"]
-[ext_resource type="Texture2D" uid="uid://d0q5kjdvns6n6" path="res://Sprites/Banana.png" id="2_wri0j"]
+[ext_resource type="Texture2D" uid="uid://35jtm1skfg65" path="res://Sprites/Final/Banana shot.png" id="2_eftxw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_huikh"]
 radius = 32.0
 
-[node name="Boomerang" type="RigidBody2D"]
-gravity_scale = 0.0
-max_contacts_reported = 1
-contact_monitor = true
-lock_rotation = true
+[node name="Boomerang" type="Area2D"]
 script = ExtResource("1_2hlgd")
 
 [node name="GFX" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_wri0j")
+scale = Vector2(3, 3)
+texture = ExtResource("2_eftxw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_huikh")

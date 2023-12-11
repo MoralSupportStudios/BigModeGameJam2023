@@ -119,7 +119,6 @@ frame_progress = 0.287863
 shape = SubResource("CapsuleShape2D_84rkd")
 
 [node name="Gun" type="Node2D" parent="."]
-position = Vector2(72, 0)
 script = ExtResource("6_2ni0s")
 bulletScenes = Array[PackedScene]([ExtResource("7_6ky0c"), ExtResource("8_u0dax"), ExtResource("9_e1qvp"), ExtResource("7_6ky0c")])
 
