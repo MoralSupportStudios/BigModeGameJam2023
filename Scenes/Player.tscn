@@ -63,9 +63,6 @@ animations = [{
 "texture": ExtResource("10_cqipj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_7nur3")
-}, {
-"duration": 1.0,
 "texture": ExtResource("12_rsetg")
 }, {
 "duration": 1.0,
@@ -87,6 +84,9 @@ animations = [{
 "texture": ExtResource("18_du8b5")
 }, {
 "duration": 1.0,
+"texture": ExtResource("11_7nur3")
+}, {
+"duration": 1.0,
 "texture": ExtResource("19_wijlu")
 }, {
 "duration": 1.0,
@@ -97,7 +97,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 17.0
+"speed": 14.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_84rkd"]
@@ -113,7 +113,7 @@ metadata/_edit_group_ = true
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_e1fv2")
 animation = &"walk"
-frame_progress = 0.287863
+frame_progress = 0.842765
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_84rkd")
