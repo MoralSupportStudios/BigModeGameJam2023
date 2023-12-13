@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dfcwy876ohq07"]
+[gd_scene load_steps=30 format=3 uid="uid://dfcwy876ohq07"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_jycjc"]
 [ext_resource type="Texture2D" uid="uid://t0xqeponxmk1" path="res://Sprites/art/playerGrey_up1.png" id="2_bg8ef"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://bu80fn5d08lln" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00016.png" id="19_wijlu"]
 [ext_resource type="Texture2D" uid="uid://bt0qlrpxlfrpy" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00017.png" id="20_valjb"]
 [ext_resource type="Texture2D" uid="uid://dxfn2f7begv41" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00018.png" id="21_8d1xh"]
+[ext_resource type="AudioStream" uid="uid://cc4liaup8mrg2" path="res://SFX/Basic_ATK.ogg" id="26_i0t4c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1fv2"]
 animations = [{
@@ -121,6 +122,9 @@ shape = SubResource("CapsuleShape2D_84rkd")
 [node name="Gun" type="Node2D" parent="."]
 script = ExtResource("6_2ni0s")
 bulletScenes = Array[PackedScene]([ExtResource("7_6ky0c"), ExtResource("8_u0dax"), ExtResource("9_e1qvp"), ExtResource("7_6ky0c")])
+
+[node name="Shot" type="AudioStreamPlayer" parent="Gun"]
+stream = ExtResource("26_i0t4c")
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("8_sviry")

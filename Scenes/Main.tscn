@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8ha40gifns63"]
+[gd_scene load_steps=8 format=3 uid="uid://c8ha40gifns63"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_gr5jo"]
 [ext_resource type="PackedScene" uid="uid://di76t0eymq0va" path="res://Scenes/Mob.tscn" id="2_nn127"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/EnemySpawner.cs" id="4_vwa7w"]
 [ext_resource type="PackedScene" uid="uid://b74nept1ac6dx" path="res://Scenes/Enemy.tscn" id="5_q3jeo"]
 [ext_resource type="PackedScene" uid="uid://cq5mwrshkfgnq" path="res://Scenes/HUD.tscn" id="6_i20od"]
+[ext_resource type="AudioStream" uid="uid://dhnlaln4hpp2u" path="res://Music/Overworld.mp3" id="7_72a3s"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_gr5jo")
@@ -20,7 +21,7 @@ position = Vector2(704, 360)
 position = Vector2(-632, -320)
 script = ExtResource("4_vwa7w")
 EnemyScene = ExtResource("5_q3jeo")
-SpawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6"), NodePath("SpawnPoint7"), NodePath("SpawnPoint8")]
+SpawnPoints = []
 EnemyPerSeconds = 2.0
 
 [node name="SpawnPoint" type="Node2D" parent="Player/Camera2D/EnemySpawner"]
@@ -60,6 +61,11 @@ wait_time = 10.0
 position = Vector2(640, 320)
 
 [node name="HUD" parent="." instance=ExtResource("6_i20od")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_72a3s")
+volume_db = -20.613
+autoplay = true
 
 [connection signal="Hit" from="Player" to="." method="GameOver"]
 [connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimerTimeout"]
