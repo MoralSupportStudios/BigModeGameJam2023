@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b74nept1ac6dx"]
+[gd_scene load_steps=25 format=3 uid="uid://b74nept1ac6dx"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ay727"]
 [ext_resource type="Texture2D" uid="uid://b6wkon3ult76g" path="res://Sprites/Player.png" id="2_dc5qb"]
@@ -9,6 +9,103 @@
 [ext_resource type="PackedScene" uid="uid://vq3rgrakk8jv" path="res://Scenes/Pickups/Nana.tscn" id="5_dr5j5"]
 [ext_resource type="PackedScene" uid="uid://bqrywjwhdlw61" path="res://Scenes/Pickups/Stink.tscn" id="6_155j4"]
 [ext_resource type="PackedScene" uid="uid://dqtcyh22120a5" path="res://Scenes/Pickups/Ghost.tscn" id="7_3d3i2"]
+[ext_resource type="Texture2D" uid="uid://biglak6ohi4mc" path="res://Sprites/art/Knome/Knome_00001.png" id="8_kafyx"]
+[ext_resource type="Texture2D" uid="uid://povjd0ykecmo" path="res://Sprites/art/Knome/Knome_00002.png" id="9_207v1"]
+[ext_resource type="Texture2D" uid="uid://ynajlxf028p" path="res://Sprites/art/Knome/Knome_00003.png" id="10_6js0s"]
+[ext_resource type="Texture2D" uid="uid://cv5i411jynvls" path="res://Sprites/art/Knome/Knome_00004.png" id="11_vml1l"]
+[ext_resource type="Texture2D" uid="uid://capjyfcyvbe1u" path="res://Sprites/art/Knome/Knome_00005.png" id="12_kaqu0"]
+[ext_resource type="Texture2D" uid="uid://duwxfv00u8xqh" path="res://Sprites/art/Knome/Knome_00006.png" id="13_jy7fw"]
+[ext_resource type="Texture2D" uid="uid://ocar73kii7yv" path="res://Sprites/art/Knome/Knome_00007.png" id="14_b7gqa"]
+[ext_resource type="Texture2D" uid="uid://omn2o622clh0" path="res://Sprites/art/Knome/Knome_00008.png" id="15_fh3f6"]
+[ext_resource type="Texture2D" uid="uid://b04el7vf7dgq8" path="res://Sprites/art/Knome/Knome_00009.png" id="16_1ok0d"]
+[ext_resource type="Texture2D" uid="uid://mpj2petgvy6u" path="res://Sprites/art/Knome/Knome_00010.png" id="17_w1dqi"]
+[ext_resource type="Texture2D" uid="uid://dhrwjgedqbfe4" path="res://Sprites/art/Knome/Knome_00011.png" id="18_l7bb2"]
+[ext_resource type="Texture2D" uid="uid://dv57xda2qkqod" path="res://Sprites/art/Knome/Knome_00012.png" id="19_sbvre"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tu4xe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_kafyx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_207v1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6js0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_vml1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_kaqu0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jy7fw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_b7gqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_fh3f6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1ok0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_w1dqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_l7bb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_sbvre")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_kafyx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_207v1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6js0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_vml1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_kaqu0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jy7fw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_b7gqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_fh3f6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1ok0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_w1dqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_l7bb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_sbvre")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_652f0"]
 radius = 35.0571
@@ -21,7 +118,13 @@ script = ExtResource("1_ay727")
 PickupScenes = Array[PackedScene]([ExtResource("2_ecfnr"), ExtResource("3_3xi8p"), ExtResource("4_x8u1a"), ExtResource("5_dr5j5"), ExtResource("6_155j4"), ExtResource("7_3d3i2")])
 Speed = 100.0
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_tu4xe")
+animation = &"Walking"
+
 [node name="GFX" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_dc5qb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
