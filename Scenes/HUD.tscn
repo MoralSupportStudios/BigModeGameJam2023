@@ -1,19 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cq5mwrshkfgnq"]
+[gd_scene load_steps=7 format=3 uid="uid://cq5mwrshkfgnq"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.cs" id="1_o6va6"]
 [ext_resource type="FontFile" uid="uid://bake4dfxthmrt" path="res://fonts/Xolonium-Regular.ttf" id="2_r5mte"]
+[ext_resource type="Texture2D" uid="uid://c1iqfshqga6ni" path="res://Sprites/Final/Milk pickup.png" id="3_p4q6q"]
+[ext_resource type="Texture2D" uid="uid://8icdt5uki8tv" path="res://Sprites/Final/Stink shot.png" id="4_0uuao"]
+[ext_resource type="Texture2D" uid="uid://ba47yb5coqd2s" path="res://Sprites/Final/Banana pickup.png" id="4_n81q8"]
+[ext_resource type="Texture2D" uid="uid://cx1xlq10vqs8o" path="res://Sprites/Final/Ghost pickup.png" id="6_lj32p"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_o6va6")
 
 [node name="ScoreLabel" type="Label" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -368.0
-offset_right = 215.0
-offset_bottom = -287.0
-grow_vertical = 2
+offset_right = 280.0
+offset_bottom = 81.0
 theme_override_fonts/font = ExtResource("2_r5mte")
 theme_override_font_sizes/font_size = 64
 text = "Score: 0"
@@ -81,6 +80,62 @@ theme_override_font_sizes/font_size = 64
 text = "Health"
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -592.0
+offset_top = 56.0
+offset_right = -279.0
+offset_bottom = 116.0
+grow_horizontal = 0
+scale = Vector2(1.88906, 0.989096)
+
+[node name="MilkBulletContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="MilkBulletLabel" type="Label" parent="HBoxContainer/MilkBulletContainer"]
+layout_mode = 2
+text = "DPS: 0"
+
+[node name="MilkBulletTexture" type="TextureRect" parent="HBoxContainer/MilkBulletContainer"]
+layout_mode = 2
+texture = ExtResource("3_p4q6q")
+
+[node name="BananaBoomerangContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="BananaBoomerangLabel" type="Label" parent="HBoxContainer/BananaBoomerangContainer"]
+layout_mode = 2
+text = "DPS: 0"
+
+[node name="BananaBoomerangTexture" type="TextureRect" parent="HBoxContainer/BananaBoomerangContainer"]
+layout_mode = 2
+texture = ExtResource("4_n81q8")
+
+[node name="StinkTrailContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="StinkTrailLabel" type="Label" parent="HBoxContainer/StinkTrailContainer"]
+layout_mode = 2
+text = "DPS: 0"
+
+[node name="StinkTrailTexture" type="TextureRect" parent="HBoxContainer/StinkTrailContainer"]
+modulate = Color(0.588235, 0.294118, 0, 1)
+layout_mode = 2
+texture = ExtResource("4_0uuao")
+
+[node name="GhostPowerContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="GhostPowerLabel" type="Label" parent="HBoxContainer/GhostPowerContainer"]
+layout_mode = 2
+text = "DPS: 0"
+
+[node name="GhostPowerTexture" type="TextureRect" parent="HBoxContainer/GhostPowerContainer"]
+layout_mode = 2
+texture = ExtResource("6_lj32p")
 
 [connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="OnMessageTimerTimeout"]

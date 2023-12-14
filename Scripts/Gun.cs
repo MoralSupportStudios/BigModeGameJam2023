@@ -12,7 +12,7 @@ public partial class Gun : Node2D
         GhostPower,
     }
     [Export] PackedScene[] bulletScenes;
-    
+
 
     [Export] float bulletSpeed = 600f;
     [Export] float bulletPerSecond = 5f;
@@ -29,10 +29,10 @@ public partial class Gun : Node2D
     public override void _Ready()
     {
         // Initialize the dictionary with fire rates for each BabyMode
-        babyModeFireRates[BabyMode.MilkBullet] = 5f; 
+        babyModeFireRates[BabyMode.MilkBullet] = 5f;
         babyModeFireRates[BabyMode.BananaBoomerang] = 2f;
-        babyModeFireRates[BabyMode.StinkTrail] = 4f; 
-        babyModeFireRates[BabyMode.GhostPower] = 1f; 
+        babyModeFireRates[BabyMode.StinkTrail] = 4f;
+        babyModeFireRates[BabyMode.GhostPower] = 1f;
 
         // Set the initial fire rate based on the currentBabyMode
         fireRate = 1f / babyModeFireRates[currentBabyMode];
@@ -48,12 +48,19 @@ public partial class Gun : Node2D
         bulletDamages = new Dictionary<BabyMode, float>
         {
             { BabyMode.MilkBullet, defaultBulletDamage },
-            { BabyMode.BananaBoomerang, defaultBulletDamage },
+            { BabyMode.BananaBoomerang, defaultBulletDamage + 0.5f },
             { BabyMode.StinkTrail, defaultBulletDamage },
-            { BabyMode.GhostPower, defaultBulletDamage }
+            { BabyMode.GhostPower, defaultBulletDamage + 3f }
         };
     }
-
+    public float GetBulletDamage(BabyMode mode)
+    {
+        return bulletDamages.ContainsKey(mode) ? bulletDamages[mode] : 0f;
+    }
+    public float GetFireRate(BabyMode mode)
+    {
+        return babyModeFireRates.ContainsKey(mode) ? babyModeFireRates[mode] : 0f;
+    }
     public void SwitchBabyMode(BabyMode mode)
     {
         if (Enum.IsDefined(typeof(BabyMode), mode) && babyModeFireRates.ContainsKey(mode))
@@ -62,35 +69,17 @@ public partial class Gun : Node2D
             fireRate = 1f / babyModeFireRates[mode]; // Update the fire rate for the new mode
         }
     }
-
-
-    public void CycleBabyMode()
-    {
-        // Get the next mode by incrementing the current mode and then taking the modulus
-        int nextMode = (((int)currentBabyMode + 1) % bulletScenes.Length);
-        SwitchBabyMode((BabyMode)nextMode);
-    }
-
-
     public override void _Process(double delta)
     {
         Player player = GetTree().Root.GetNodeOrNull<Player>("Main/Player");
         LookAt(GetGlobalMousePosition());
-        if (player != null && player.IsVisibleInTree())
+        if (player != null && player.IsVisibleInTree() && Input.IsActionPressed("click"))
         {
-            if (Input.IsActionJustPressed("RightClick"))
+            timeUntilFire -= (float)delta;
+            if (timeUntilFire <= 0f)
             {
-                CycleBabyMode();
-            }
-
-            if (Input.IsActionPressed("click")) // Changed from IsActionJustPressed to IsActionPressed
-            {
-                timeUntilFire -= (float)delta;
-                if (timeUntilFire <= 0f)
-                {
-                    FireBullet();
-                    timeUntilFire = fireRate; // Reset the time until the next fire based on the fire rate
-                }
+                FireBullet();
+                timeUntilFire = fireRate; // Reset the time until the next fire based on the fire rate
             }
         }
     }
@@ -134,7 +123,7 @@ public partial class Gun : Node2D
                             ghostShotgun.Rotation = currentAngle;
                             ghostShotgun.GlobalPosition = GlobalPosition;
                             ghostShotgun.LinearVelocity = new Vector2(bulletSpeed, 0).Rotated(currentAngle);
-                        GetTree().Root.AddChild(ghostShotgun);
+                            GetTree().Root.AddChild(ghostShotgun);
 
                             // Increment the angle for the next bullet
                             currentAngle += Mathf.DegToRad(angleStep);
@@ -153,7 +142,7 @@ public partial class Gun : Node2D
                     break;
                 case BabyMode.BananaBoomerang:
                     Area2D boomerangInstance = bulletScene.Instantiate<Area2D>();
-                    if(boomerangInstance is Boomerang bananarang)
+                    if (boomerangInstance is Boomerang bananarang)
                     {
                         bananarang.orbitCenter = GlobalPosition;
                         bananarang.GlobalPosition = GlobalPosition;
@@ -174,5 +163,4 @@ public partial class Gun : Node2D
             }
         }
     }
-
 }

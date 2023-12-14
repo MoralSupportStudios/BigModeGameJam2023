@@ -1,12 +1,13 @@
 using Godot;
 using System;
+using static Gun;
 
 public partial class Main : Node
 {
 	[Export]
 	public PackedScene MobScene { get; set; }
-	private float healthIncrement = 0f;
-	private float spawnIncrement = 2f;
+	private float healthIncrement = 0.1f;
+	private float spawnIncrement = 0.1f;
 	public int Score;
 	public void GameOver()
 	{
@@ -25,9 +26,16 @@ public partial class Main : Node
 		GetTree().CallGroup("enemy", Node.MethodName.QueueFree);
 		GetTree().CallGroup("pickup", Node.MethodName.QueueFree);
 		Score = 0;
+		healthIncrement = 0f;
+		spawnIncrement = 2f;
 
 		Player player = GetNode<Player>("Player");
-		Marker2D startPosition = GetNode<Marker2D>("StartPosition");
+		
+        Gun playerGun = player.GetNode<Gun>("Gun");
+        playerGun.SwitchBabyMode(BabyMode.MilkBullet);
+
+
+        Marker2D startPosition = GetNode<Marker2D>("StartPosition");
 		player.Start(startPosition.Position);
 		player.GetNode<Health>("Health").CurrentHealth = player.GetNode<Health>("Health").MaxHealth;
 
@@ -35,8 +43,9 @@ public partial class Main : Node
 		HUD hud = GetNode<HUD>("HUD");
 		hud.UpdateScore(Score);
 		hud.ShowMessage("Get Ready!");
+        //hud.UpdatePowerUpSpriteAndDPS(BabyMode.MilkBullet, playerGun);
 
-		GetNode<Timer>("HealthIncreaseTimer").Start();
+        GetNode<Timer>("HealthIncreaseTimer").Start();
 	}
 	private void OnScoreTimerTimeout()
 	{

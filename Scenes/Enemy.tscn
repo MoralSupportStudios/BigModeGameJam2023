@@ -1,7 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://b74nept1ac6dx"]
+[gd_scene load_steps=24 format=3 uid="uid://b74nept1ac6dx"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ay727"]
-[ext_resource type="Texture2D" uid="uid://b6wkon3ult76g" path="res://Sprites/Player.png" id="2_dc5qb"]
 [ext_resource type="PackedScene" uid="uid://bf67hbpdaipqf" path="res://Scenes/Pickups/Score.tscn" id="2_ecfnr"]
 [ext_resource type="PackedScene" uid="uid://tqvitj0ks2c6" path="res://Scenes/Pickups/Heal.tscn" id="3_3xi8p"]
 [ext_resource type="Script" path="res://Scripts/Health.cs" id="3_rshdq"]
@@ -107,10 +106,12 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_652f0"]
-radius = 35.0571
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4sl84"]
+radius = 32.0
+height = 144.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y0wng"]
+radius = 24.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 motion_mode = 1
@@ -121,15 +122,10 @@ Speed = 100.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_tu4xe")
-animation = &"Walking"
-
-[node name="GFX" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_dc5qb")
+frame_progress = 0.391586
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 16)
-shape = SubResource("CircleShape2D_652f0")
+shape = SubResource("CapsuleShape2D_4sl84")
 
 [node name="AttackRange" type="Area2D" parent="."]
 
@@ -138,6 +134,7 @@ position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_y0wng")
 
 [node name="Health" type="Node2D" parent="."]
+position = Vector2(0, -16)
 script = ExtResource("3_rshdq")
 MaxHealth = 2.0
 
