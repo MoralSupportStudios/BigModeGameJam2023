@@ -95,10 +95,6 @@ public partial class Enemy : CharacterBody2D
 		}
 
 		QueueFree();
-		//Pickup pickupInstance = (Pickup)pickupScene.Instantiate();
-		//pickupInstance.Position = Position;
-		
-		//QueueFree();
 	}
 	private PickupType SelectRandomWeighted()
 	{

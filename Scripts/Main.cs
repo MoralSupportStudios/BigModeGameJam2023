@@ -4,12 +4,25 @@ using static Gun;
 
 public partial class Main : Node
 {
-	[Export]
-	public PackedScene MobScene { get; set; }
 	private float healthIncrement = 0.1f;
 	private float spawnIncrement = 0.1f;
 	public int Score;
-	public void GameOver()
+	[Export] AudioStreamPlayer title;
+    [Export] AudioStreamPlayer overworld;
+    [Export] AudioStreamPlayer end;
+
+    public override void _Ready()
+    {
+        title = GetNode<AudioStreamPlayer>("title");
+        overworld = GetNode<AudioStreamPlayer>("overworld");
+        end = GetNode<AudioStreamPlayer>("end");
+
+        end.Stop();
+        title.Play();
+        overworld.Stop();
+    }
+
+    public void GameOver()
 	{
 		Timer scoreTimer = GetNodeOrNull<Timer>("ScoreTimer");
 		if (scoreTimer != null)
@@ -18,6 +31,9 @@ public partial class Main : Node
 		}
 
 		GetNode<HUD>("HUD").ShowGameOver(Score);
+		end.Play();
+		title.Stop();
+		overworld.Stop();
 	}
 
 
@@ -46,7 +62,11 @@ public partial class Main : Node
         //hud.UpdatePowerUpSpriteAndDPS(BabyMode.MilkBullet, playerGun);
 
         GetNode<Timer>("HealthIncreaseTimer").Start();
-	}
+
+        end.Stop();
+        title.Stop();
+        overworld.Play();
+    }
 	private void OnScoreTimerTimeout()
 	{
 		//Score++;

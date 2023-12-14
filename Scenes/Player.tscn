@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dfcwy876ohq07"]
+[gd_scene load_steps=32 format=3 uid="uid://dfcwy876ohq07"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_jycjc"]
 [ext_resource type="Texture2D" uid="uid://udo7favafcqf" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00001.png" id="4_t8f3x"]
@@ -25,6 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://bt0qlrpxlfrpy" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00017.png" id="20_valjb"]
 [ext_resource type="Texture2D" uid="uid://dxfn2f7begv41" path="res://Sprites/art/Milk Baby/Milk Baby v2 walking_00018.png" id="21_8d1xh"]
 [ext_resource type="PackedScene" uid="uid://skdblp1l0ex6" path="res://Scenes/GhostShot.tscn" id="24_mklmk"]
+[ext_resource type="AudioStream" uid="uid://cjruykl1g1fk4" path="res://Sounds/SFX/Bananarang.ogg" id="25_ejt8y"]
+[ext_resource type="AudioStream" uid="uid://cv5oxjpwpxq1h" path="res://Sounds/SFX/Basic_ATK.ogg" id="26_w7rjn"]
+[ext_resource type="AudioStream" uid="uid://bary46jinimtw" path="res://Sounds/SFX/Shotgun.ogg" id="27_xwfqx"]
+[ext_resource type="AudioStream" uid="uid://bky0anicehip7" path="res://Sounds/SFX/p00p.ogg" id="28_ao8q3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1fv2"]
 animations = [{
@@ -105,9 +109,25 @@ animation = &"walk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_84rkd")
 
-[node name="Gun" type="Node2D" parent="."]
+[node name="Gun" type="Node2D" parent="." node_paths=PackedStringArray("audioPlayer")]
 script = ExtResource("6_2ni0s")
 bulletScenes = Array[PackedScene]([ExtResource("7_6ky0c"), ExtResource("8_u0dax"), ExtResource("9_e1qvp"), ExtResource("24_mklmk")])
+audioPlayer = [NodePath("banana"), NodePath("milkymilkyright"), NodePath("shotgun"), NodePath("poop")]
+
+[node name="banana" type="AudioStreamPlayer" parent="Gun"]
+stream = ExtResource("25_ejt8y")
+volume_db = -20.0
+
+[node name="milkymilkyright" type="AudioStreamPlayer" parent="Gun"]
+stream = ExtResource("26_w7rjn")
+volume_db = -20.0
+
+[node name="shotgun" type="AudioStreamPlayer" parent="Gun"]
+stream = ExtResource("27_xwfqx")
+
+[node name="poop" type="AudioStreamPlayer" parent="Gun"]
+stream = ExtResource("28_ao8q3")
+volume_db = -20.0
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("8_sviry")

@@ -17,6 +17,7 @@ public partial class Gun : Node2D
     [Export] float bulletSpeed = 600f;
     [Export] float bulletPerSecond = 5f;
     [Export] float defaultBulletDamage = 1f;
+    [Export] AudioStreamPlayer[] audioPlayer;
     Dictionary<BabyMode, float> bulletDamages;
     Dictionary<BabyMode, float> babyModeFireRates = new Dictionary<BabyMode, float>();
 
@@ -24,7 +25,7 @@ public partial class Gun : Node2D
     float fireRate;
     float timeUntilFire = 0f;
     Dictionary<BabyMode, PackedScene> babyModeBullet;
-
+    
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -129,6 +130,7 @@ public partial class Gun : Node2D
                             currentAngle += Mathf.DegToRad(angleStep);
                         }
                     }
+                    audioPlayer[2].Play();
                     break;
                 case BabyMode.StinkTrail:
                     // For StinkTrail, instance it at the player's position
@@ -139,6 +141,7 @@ public partial class Gun : Node2D
                         stinkTrail.damage = bulletDamages[currentBabyMode];
                         GetTree().Root.AddChild(stinkTrail);
                     }
+                    audioPlayer[3].Play();
                     break;
                 case BabyMode.BananaBoomerang:
                     Area2D boomerangInstance = bulletScene.Instantiate<Area2D>();
@@ -148,6 +151,7 @@ public partial class Gun : Node2D
                         bananarang.GlobalPosition = GlobalPosition;
                         GetTree().Root.AddChild(boomerangInstance);
                     }
+                    audioPlayer[0].Play();
                     break;
                 default:
                     RigidBody2D bulletInstance = (RigidBody2D)bulletScene.Instantiate();
@@ -159,8 +163,10 @@ public partial class Gun : Node2D
                         bullet.LinearVelocity = new Vector2(bulletSpeed, 0).Rotated(bullet.Rotation);
                         GetTree().Root.AddChild(bullet);
                     }
+                    audioPlayer[1].Play();
                     break;
             }
+            
         }
     }
 }

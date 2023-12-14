@@ -20,7 +20,8 @@ public partial class Pickup : Area2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-	}
+
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -50,7 +51,6 @@ public partial class Pickup : Area2D
                 GetTree().Root.GetNode<Main>("Main").Score++;
                 var score = GetTree().Root.GetNode<Main>("Main").Score;
                 GetTree().Root.GetNode<Main>("Main").GetNode<HUD>("HUD").UpdateScore(score);
-
                 break;
             case PickupType.Health:
                 player.GetNode<Health>("Health").Heal(1);

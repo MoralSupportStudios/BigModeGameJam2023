@@ -6,9 +6,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ddetx"]
 radius = 16.0
 
-[node name="Pickup" type="Area2D" groups=["pickup"]]
+[node name="Pickup" type="Area2D" node_paths=PackedStringArray("AudioPlayer") groups=["pickup"]]
 script = ExtResource("1_ei7ll")
 TypeOfPickup = 4
+AudioPlayer = []
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.588235, 0.294118, 0, 1)
