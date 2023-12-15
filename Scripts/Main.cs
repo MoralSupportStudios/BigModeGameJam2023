@@ -8,21 +8,21 @@ public partial class Main : Node
 	private float spawnIncrement = 0.1f;
 	public int Score;
 	[Export] AudioStreamPlayer title;
-    [Export] AudioStreamPlayer overworld;
-    [Export] AudioStreamPlayer end;
+	[Export] AudioStreamPlayer overworld;
+	[Export] AudioStreamPlayer end;
 
-    public override void _Ready()
-    {
-        title = GetNode<AudioStreamPlayer>("title");
-        overworld = GetNode<AudioStreamPlayer>("overworld");
-        end = GetNode<AudioStreamPlayer>("end");
+	public override void _Ready()
+	{
+		title = GetNode<AudioStreamPlayer>("title");
+		overworld = GetNode<AudioStreamPlayer>("overworld");
+		end = GetNode<AudioStreamPlayer>("end");
 
-        end.Stop();
-        title.Play();
-        overworld.Stop();
-    }
+		end.Stop();
+		title.Play();
+		overworld.Stop();
+	}
 
-    public void GameOver()
+	public void GameOver()
 	{
 		Timer scoreTimer = GetNodeOrNull<Timer>("ScoreTimer");
 		if (scoreTimer != null)
@@ -47,11 +47,11 @@ public partial class Main : Node
 
 		Player player = GetNode<Player>("Player");
 		
-        Gun playerGun = player.GetNode<Gun>("Gun");
-        playerGun.SwitchBabyMode(BabyMode.MilkBullet);
+		Gun playerGun = player.GetNode<Gun>("Gun");
+		playerGun.SwitchBabyMode(BabyMode.MilkBullet);
 
 
-        Marker2D startPosition = GetNode<Marker2D>("StartPosition");
+		Marker2D startPosition = GetNode<Marker2D>("StartPosition");
 		player.Start(startPosition.Position);
 		player.GetNode<Health>("Health").CurrentHealth = player.GetNode<Health>("Health").MaxHealth;
 
@@ -59,14 +59,14 @@ public partial class Main : Node
 		HUD hud = GetNode<HUD>("HUD");
 		hud.UpdateScore(Score);
 		hud.ShowMessage("Get Ready!");
-        //hud.UpdatePowerUpSpriteAndDPS(BabyMode.MilkBullet, playerGun);
+		//hud.UpdatePowerUpSpriteAndDPS(BabyMode.MilkBullet, playerGun);
 
-        GetNode<Timer>("HealthIncreaseTimer").Start();
+		GetNode<Timer>("HealthIncreaseTimer").Start();
 
-        end.Stop();
-        title.Stop();
-        overworld.Play();
-    }
+		end.Stop();
+		title.Stop();
+		overworld.Play();
+	}
 	private void OnScoreTimerTimeout()
 	{
 		//Score++;

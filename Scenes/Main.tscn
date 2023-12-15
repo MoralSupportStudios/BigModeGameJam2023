@@ -1,16 +1,55 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8ha40gifns63"]
+[gd_scene load_steps=9 format=3 uid="uid://c8ha40gifns63"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_gr5jo"]
+[ext_resource type="Texture2D" uid="uid://dwu3kud5hx5sg" path="res://Sprites/art/Map.png" id="2_s3mr2"]
 [ext_resource type="PackedScene" uid="uid://dfcwy876ohq07" path="res://Scenes/Player.tscn" id="3_ohotn"]
 [ext_resource type="Script" path="res://Scripts/EnemySpawner.cs" id="4_vwa7w"]
 [ext_resource type="PackedScene" uid="uid://b74nept1ac6dx" path="res://Scenes/Enemy.tscn" id="5_q3jeo"]
 [ext_resource type="PackedScene" uid="uid://cq5mwrshkfgnq" path="res://Scenes/HUD.tscn" id="6_i20od"]
+[ext_resource type="Texture2D" uid="uid://b3thsyvk7irls" path="res://Sprites/art/Map with out porch.png" id="7_lk2d2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i0pmy"]
+radius = 202.882
 
 [node name="Main" type="Node"]
 script = ExtResource("1_gr5jo")
 
+[node name="Map" type="Sprite2D" parent="."]
+position = Vector2(617, 335)
+texture = ExtResource("2_s3mr2")
+
+[node name="MapWithOutPorch" type="Sprite2D" parent="Map"]
+position = Vector2(-2033, 2)
+rotation = 1.5708
+texture = ExtResource("7_lk2d2")
+
+[node name="MapWithOutPorch2" type="Sprite2D" parent="Map"]
+position = Vector2(2024, 0)
+rotation = -1.5708
+texture = ExtResource("7_lk2d2")
+
+[node name="MapWithOutPorch3" type="Sprite2D" parent="Map"]
+position = Vector2(2031, -2030)
+rotation = 3.14159
+texture = ExtResource("7_lk2d2")
+
+[node name="MapWithOutPorch4" type="Sprite2D" parent="Map"]
+position = Vector2(-19, -2035)
+rotation = 1.5708
+texture = ExtResource("7_lk2d2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map"]
+position = Vector2(607, 437)
+shape = SubResource("CircleShape2D_i0pmy")
+one_way_collision = true
+
+[node name="MapWithOutPorch5" type="Sprite2D" parent="Map/CollisionShape2D"]
+position = Vector2(-2650, -2478)
+rotation = 1.5708
+texture = ExtResource("7_lk2d2")
+
 [node name="Player" parent="." instance=ExtResource("3_ohotn")]
-position = Vector2(704, 360)
+position = Vector2(506, 525)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
@@ -55,7 +94,7 @@ one_shot = true
 wait_time = 10.0
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(640, 320)
+position = Vector2(797, 474)
 
 [node name="HUD" parent="." instance=ExtResource("6_i20od")]
 

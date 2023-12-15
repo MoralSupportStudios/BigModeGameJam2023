@@ -3,14 +3,14 @@ using System;
 
 public partial class HUD : CanvasLayer
 {
-    [Signal]
+	[Signal]
 	public delegate void StartGameEventHandler();
 
 	private ProgressBar healthBar; // This will be our health bar on the HUD.
 	private Health playerHealth; // This will hold a reference to the player's health.
-    private Gun playerGun;
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+	private Gun playerGun;
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
 	{
 		healthBar = GetNode<ProgressBar>("HealthBar"); // Correctly assign the node path for your health bar.
 		playerHealth = GetParent().GetNode<Health>("Player/Health"); // Correctly assign the node path to your player's Health node.
@@ -25,7 +25,7 @@ public partial class HUD : CanvasLayer
 		UpdateHealthBar();
 		UpdatePowerUpSpriteAndDPS();
 
-    }
+	}
 	private void UpdateHealthBar()
 	{
 		if (playerHealth != null && healthBar != null)
@@ -70,55 +70,55 @@ public partial class HUD : CanvasLayer
 		GetNode<Label>("Message").Hide();
 	}
 
-    private void UpdatePowerUpSpriteAndDPS()
-    {
-        // Iterate through each BabyMode and update the DPS and sprite
-        foreach (Gun.BabyMode mode in Enum.GetValues(typeof(Gun.BabyMode)))
-        {
-            UpdatePowerUpDisplayForMode(mode);
-        }
-    }
-    private void UpdatePowerUpDisplayForMode(Gun.BabyMode mode)
-    {
-        // Construct the node paths based on the actual node names in the scene
-        string modeName = mode.ToString();
-        string containerPath = $"HBoxContainer/{modeName}Container";
-        string labelPath = $"{modeName}Label";
-        string texturePath = $"{modeName}Texture";
+	private void UpdatePowerUpSpriteAndDPS()
+	{
+		// Iterate through each BabyMode and update the DPS and sprite
+		foreach (Gun.BabyMode mode in Enum.GetValues(typeof(Gun.BabyMode)))
+		{
+			UpdatePowerUpDisplayForMode(mode);
+		}
+	}
+	private void UpdatePowerUpDisplayForMode(Gun.BabyMode mode)
+	{
+		// Construct the node paths based on the actual node names in the scene
+		string modeName = mode.ToString();
+		string containerPath = $"HBoxContainer/{modeName}Container";
+		string labelPath = $"{modeName}Label";
+		string texturePath = $"{modeName}Texture";
 
-        // Retrieve the container using the constructed path
-        var container = GetNodeOrNull<HBoxContainer>(containerPath);
-        if (container == null)
-        {
-            GD.Print($"Container not found for mode: {modeName}");
-            return;
-        }
+		// Retrieve the container using the constructed path
+		var container = GetNodeOrNull<HBoxContainer>(containerPath);
+		if (container == null)
+		{
+			GD.Print($"Container not found for mode: {modeName}");
+			return;
+		}
 
-        // Retrieve the label and texture rect using their constructed paths
-        var label = container.GetNodeOrNull<Label>(labelPath);
-        var textureRect = container.GetNodeOrNull<TextureRect>(texturePath);
+		// Retrieve the label and texture rect using their constructed paths
+		var label = container.GetNodeOrNull<Label>(labelPath);
+		var textureRect = container.GetNodeOrNull<TextureRect>(texturePath);
 
-        if (label == null)
-        {
-            GD.Print($"Label not found for mode: {modeName}");
-            return;
-        }
-        if (textureRect == null)
-        {
-            GD.Print($"TextureRect not found for mode: {modeName}");
-            return;
-        }
+		if (label == null)
+		{
+			GD.Print($"Label not found for mode: {modeName}");
+			return;
+		}
+		if (textureRect == null)
+		{
+			GD.Print($"TextureRect not found for mode: {modeName}");
+			return;
+		}
 
-        if (playerGun == null)
-        {
-            GD.Print("playerGun is null");
-            return;
-        }
+		if (playerGun == null)
+		{
+			GD.Print("playerGun is null");
+			return;
+		}
 
-        // Calculate and update DPS
-        float damage = playerGun.GetBulletDamage(mode);
-        float fireRate = playerGun.GetFireRate(mode);
-        float dps = damage * fireRate;
-        label.Text = $"DPS: {dps}";
-    }
+		// Calculate and update DPS
+		float damage = playerGun.GetBulletDamage(mode);
+		float fireRate = playerGun.GetFireRate(mode);
+		float dps = damage * fireRate;
+		label.Text = $"DPS: {dps}";
+	}
 }

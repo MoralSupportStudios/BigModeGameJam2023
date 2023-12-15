@@ -42,14 +42,14 @@ public partial class Enemy : CharacterBody2D
 	{
 		if (player != null)
 		{
-            AnimatedSprite2D animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+			AnimatedSprite2D animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-            //LookAt(player.GlobalPosition);
+			//LookAt(player.GlobalPosition);
 			Vector2 direction = (player.GlobalPosition - GlobalPosition).Normalized();
 			Velocity = direction * Speed;
-            animatedSprite2D.Play();
+			animatedSprite2D.Play();
 
-        }
+		}
 		else
 		{
 			Velocity = Vector2.Zero;
@@ -128,13 +128,13 @@ public partial class Enemy : CharacterBody2D
 		return PickupType.Nothing;
 	}
 	public void Damaged()
-    {
-        Health healthComponent = GetNode<Health>("Health");
-        float healthPercentage = healthComponent.GetHealthPercentage();
+	{
+		Health healthComponent = GetNode<Health>("Health");
+		float healthPercentage = healthComponent.GetHealthPercentage();
 
-        // As the enemy gets more damaged, we increase the red component and decrease the green and blue ones.
-        AnimatedSprite2D image = GetNode<AnimatedSprite2D>("AnimatedSprite2D"); // Ensure the node name and type match your scene
-        image.SelfModulate = new Color(1, healthPercentage, healthPercentage);
+		// As the enemy gets more damaged, we increase the red component and decrease the green and blue ones.
+		AnimatedSprite2D image = GetNode<AnimatedSprite2D>("AnimatedSprite2D"); // Ensure the node name and type match your scene
+		image.SelfModulate = new Color(1, healthPercentage, healthPercentage);
 	}
 
 

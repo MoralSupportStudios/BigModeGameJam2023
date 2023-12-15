@@ -112,7 +112,7 @@ shape = SubResource("CapsuleShape2D_84rkd")
 [node name="Gun" type="Node2D" parent="." node_paths=PackedStringArray("audioPlayer")]
 script = ExtResource("6_2ni0s")
 bulletScenes = Array[PackedScene]([ExtResource("7_6ky0c"), ExtResource("8_u0dax"), ExtResource("9_e1qvp"), ExtResource("24_mklmk")])
-audioPlayer = [NodePath("banana"), NodePath("milkymilkyright"), NodePath("shotgun"), NodePath("poop")]
+audioPlayer = []
 
 [node name="banana" type="AudioStreamPlayer" parent="Gun"]
 stream = ExtResource("25_ejt8y")
