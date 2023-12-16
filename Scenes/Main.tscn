@@ -101,12 +101,15 @@ wait_time = 10.0
 
 [node name="title" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_lsgs0")
+volume_db = -20.0
 
 [node name="overworld" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_cken7")
+volume_db = -20.0
 
 [node name="end" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_lm7nx")
+volume_db = -20.0
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(-2112, -2112, 2112, -2112, 2112, 2112, -2112, 2112, -2112, -2112)

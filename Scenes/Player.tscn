@@ -115,16 +115,19 @@ audioPlayer = [NodePath("banana"), NodePath("milkymilkyright"), NodePath("shotgu
 
 [node name="banana" type="AudioStreamPlayer" parent="Gun"]
 stream = ExtResource("25_ejt8y")
+volume_db = -20.0
 
 [node name="milkymilkyright" type="AudioStreamPlayer" parent="Gun"]
 stream = ExtResource("26_w7rjn")
+volume_db = -20.0
 
 [node name="shotgun" type="AudioStreamPlayer" parent="Gun"]
 stream = ExtResource("27_xwfqx")
+volume_db = -20.0
 
 [node name="poop" type="AudioStreamPlayer" parent="Gun"]
 stream = ExtResource("28_ao8q3")
-volume_db = -10.0
+volume_db = -30.0
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("8_sviry")
