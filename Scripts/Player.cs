@@ -12,8 +12,11 @@ public partial class Player : Area2D
 	public int Speed { get; set; } = 400; // How fast the player will move (pixels/sec).
 	public bool IsAlive { get; set; } = false;
 
-	//public Vector2 ScreenSize; // Size of the game window.
-	public override void _Ready()
+    // Define the boundaries for the player movement
+    private Vector2 _boundaryTopLeft = new Vector2(-2048, -2048);
+    private Vector2 _boundaryBottomRight = new Vector2(2048, 2048);
+
+    public override void _Ready()
 	{
 	   // ScreenSize = GetViewportRect().Size;
 		Hide();
@@ -59,11 +62,15 @@ public partial class Player : Area2D
 			animatedSprite2D.Stop();
 		}
 		Position += velocity * (float)delta;
-		if (velocity.X != 0)
+        // Clamp position within the boundaries
+        Position = new Vector2(
+            x: Mathf.Clamp(Position.X, _boundaryTopLeft.X, _boundaryBottomRight.X),
+            y: Mathf.Clamp(Position.Y, _boundaryTopLeft.Y, _boundaryBottomRight.Y)
+        );
+        if (velocity.X != 0)
 		{
 			animatedSprite2D.Animation = "walk";
 			animatedSprite2D.FlipV = false;
-			// See the note below about boolean assignment.
 			animatedSprite2D.FlipH = velocity.X < 0;
 		}
 	}

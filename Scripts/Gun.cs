@@ -16,10 +16,10 @@ public partial class Gun : Node2D
 
     [Export] float bulletSpeed = 600f;
     [Export] float bulletPerSecond = 5f;
-    [Export] float defaultBulletDamage = 1f;
+    [Export] public float defaultBulletDamage = 1f;
     [Export] AudioStreamPlayer[] audioPlayer;
-    Dictionary<BabyMode, float> bulletDamages;
-    Dictionary<BabyMode, float> babyModeFireRates = new Dictionary<BabyMode, float>();
+    public Dictionary<BabyMode, float> bulletDamages;
+    public Dictionary<BabyMode, float> babyModeFireRates = new Dictionary<BabyMode, float>();
 
     private BabyMode currentBabyMode = BabyMode.MilkBullet;
     float fireRate;
@@ -51,7 +51,7 @@ public partial class Gun : Node2D
             { BabyMode.MilkBullet, defaultBulletDamage },
             { BabyMode.BananaBoomerang, defaultBulletDamage + 0.5f },
             { BabyMode.StinkTrail, defaultBulletDamage },
-            { BabyMode.GhostPower, defaultBulletDamage + 3f }
+            { BabyMode.GhostPower, defaultBulletDamage + 5f }
         };
     }
     public float GetBulletDamage(BabyMode mode)

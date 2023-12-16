@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjcyybgl0ylnt"]
+
+[ext_resource type="Texture2D" uid="uid://b3thsyvk7irls" path="res://Sprites/art/Map with out porch.png" id="1_lpnft"]
+
+[node name="Sprite2D" type="Sprite2D"]
+z_index = -1
+texture = ExtResource("1_lpnft")

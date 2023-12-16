@@ -25,7 +25,6 @@ public partial class Health : Node2D
             if(GetParent().HasMethod("Damaged"))
             {
                 GetParent().Call("Damaged");
-                GD.Print(damage + " taken");
             }
         }
     }

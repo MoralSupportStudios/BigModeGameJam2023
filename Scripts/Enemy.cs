@@ -17,7 +17,12 @@ public partial class Enemy : CharacterBody2D
 	float timeUntilAttack;
 	bool withinAttackRange = false;
 
-	public override void _Ready()
+    // Define the boundaries for the enemy
+    private Vector2 _boundaryTopLeft = new Vector2(-2048, -2048);
+    private Vector2 _boundaryBottomRight = new Vector2(2048, 2048);
+
+
+    public override void _Ready()
 	{
 		player = (Player)GetTree().Root.GetNode("Main").GetNode("Player");
 
@@ -79,34 +84,47 @@ public partial class Enemy : CharacterBody2D
 			timeUntilAttack = attackSpeed;
 		}
 	}
-	public void Die()
-	{
-		// Calculate which pickup to drop, if any
-		PickupType selectedPickup = SelectRandomWeighted();
+    public void Die()
+    {
+        if (IsWithinBounds(Position))
+        {
+            // Calculate which pickup to drop, if any
+            PickupType selectedPickup = SelectRandomWeighted();
 
-		// If 'Nothing' is selected, we don't drop anything
-		if (selectedPickup != PickupType.Nothing)
-		{
-			// Instantiate the selected pickup
-			PackedScene pickupScene = PickupScenes[(int)selectedPickup];
-			Node2D pickupInstance = (Node2D)pickupScene.Instantiate();
-			pickupInstance.Position = Position;
-			GetParent().CallDeferred("add_child", pickupInstance);
-		}
+            // If 'Nothing' is selected, we don't drop anything
+            if (selectedPickup != PickupType.Nothing)
+            {
+                // Instantiate the selected pickup
+                PackedScene pickupScene = PickupScenes[(int)selectedPickup];
+                if (pickupScene == null)
+                {
+                    GD.Print("Selected pickup scene is null.");
+                    return;
+                }
+                Node2D pickupInstance = (Node2D)pickupScene.Instantiate();
+                pickupInstance.Position = Position;
+                GetParent().CallDeferred("add_child", pickupInstance);
+            }
+        }
 
-		QueueFree();
-	}
-	private PickupType SelectRandomWeighted()
+        QueueFree();
+    }
+    private bool IsWithinBounds(Vector2 position)
+    {
+        return position.X >= _boundaryTopLeft.X && position.X <= _boundaryBottomRight.X &&
+               position.Y >= _boundaryTopLeft.Y && position.Y <= _boundaryBottomRight.Y;
+    }
+    private PickupType SelectRandomWeighted()
 	{
 		var weights = new Dictionary<PickupType, int>
 		{
 			{ PickupType.Score, 20 },
 			{ PickupType.Health, 5 },
-			{ PickupType.Milk, 5 },
+			{ PickupType.Milk, 3 },
 			{ PickupType.Banana, 2 },
-			{ PickupType.Stink, 3 },
-			{ PickupType.Ghost, 1 },
-			{ PickupType.Nothing, 64 }
+			{ PickupType.Stink, 2 },
+			{ PickupType.Ghost, 2 },
+			{ PickupType.Nothing, 66 }
 		};
 
 		int totalWeight = 0;
